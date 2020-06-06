@@ -6,9 +6,9 @@ GIT_VERSION := $(shell git describe --always --tags --long --dirty | sed -e 's/\
 # Docker variables
 
 DOCKER_IMAGE_TAG ?= $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
-DOCKER_IMAGE_NAME := senzing/installer
-SENZING_ACCEPT_EULA := no
-SENZING_APT_INSTALL_PACKAGE := senzingapi
+DOCKER_IMAGE_NAME ?= senzing/installer
+SENZING_ACCEPT_EULA ?= no
+SENZING_APT_INSTALL_PACKAGE ?= senzingapi
 
 # -----------------------------------------------------------------------------
 # The first "make" target runs as default.

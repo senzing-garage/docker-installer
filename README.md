@@ -53,7 +53,7 @@ This alleviates the requirement for a root container seen in the
 - **Background knowledge:** This repository assumes a working knowledge of:
   - [Docker](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/docker.md)
 
-## Demonstrate
+## Build Docker image
 
 ### EULA
 
@@ -106,6 +106,34 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
         https://github.com/Senzing/docker-installer.git
     ```
 
+## Run Docker container
+
+### Docker user
+
+:thinking: **Optional:**  The Docker container runs as "USER 1001".
+Use if a different userid (UID) is required.
+Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#user)
+
+1. :pencil2: Identify user.
+    1. **Example #1:** Use specific UID. User "0" is `root`.
+
+        ```console
+        export SENZING_RUNAS_USER="0"
+        ```
+
+    1. **Example #2:** Use current user.
+
+        ```console
+        export SENZING_RUNAS_USER=$(id -u):$(id -g)
+        ```
+
+1. Construct parameter for `docker run`.
+   Example:
+
+    ```console
+    export SENZING_RUNAS_USER_PARAMETER="--user ${SENZING_RUNAS_USER}"
+    ```
+
 ### Run Docker image
 
 1. Specify where to install Senzing on local system.
@@ -121,6 +149,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
     ```console
     docker run \
         --volume ${SENZING_OPT_DIR}:/opt/senzing \
+        ${SENZING_RUNAS_USER_PARAMETER} \
         ${SENZING_DOCKER_IMAGE_TAG}
     ```
 
