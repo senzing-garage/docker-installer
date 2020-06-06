@@ -26,12 +26,9 @@ This alleviates the requirement for a root container seen in the
 1. [Expectations](#expectations)
 1. [Demonstrate](#demonstrate)
     1. [EULA](#eula)
-    1. [Docker volumes](#docker-volumes)
-    1. [Docker network](#docker-network)
-    1. [Docker user](#docker-user)
-    1. [Database support](#database-support)
-    1. [External database](#external-database)
-    1. [Run Docker container](#run-docker-container)
+    1. [Environment variables](#environment-variables)
+    1. [Build Docker image](#build-docker-image)
+    1. [Run Docker image](#run-docker-image)
 1. [Develop](#develop)
     1. [Prerequisites for development](#prerequisites-for-development)
     1. [Clone repository](#clone-repository)
@@ -102,7 +99,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
    Example:
 
     ```console
-    docker build \
+    sudo docker build \
         --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA} \
         --tag ${SENZING_DOCKER_IMAGE_TAG} \
         ${SENZING_APT_INSTALL_PACKAGE_PARAMETER} \
@@ -163,6 +160,7 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/maste
 
     ```console
     sudo docker build \
+      --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA} \
       --tag senzing/installer \
       https://github.com/senzing/docker-installer.git
     ```
@@ -171,10 +169,14 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/maste
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
-    sudo docker build --tag senzing/installer .
+    sudo docker build \
+      --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA} \
+      --tag senzing/installer \
+      .
     ```
 
 1. **Option #3:** Using `make` command.
+   Note: [SENZING_ACCEPT_EULA](#eula) environment variable must be set.
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
@@ -190,6 +192,7 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/maste
 Configuration values specified by environment variable or command line parameter.
 
 - **[SENZING_ACCEPT_EULA](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md#senzing_accept_eula)**
+- **[SENZING_OPT_DIR](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md#senzing_opt_dir)**
 
 ## Errors
 
