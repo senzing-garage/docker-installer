@@ -6,7 +6,7 @@ ENV REFRESHED_AT=2020-06-06
 # SENZING_ACCEPT_EULA to be replaced by --build-arg
 
 ARG SENZING_ACCEPT_EULA=no
-ARG SENZING_VERSION=""
+ARG SENZING_APT_INSTALL_PACKAGE="senzingapi"
 
 # Need to be root to do "apt" operations.
 
@@ -34,12 +34,14 @@ RUN curl \
 # Install Senzing package.
 #   Note: The system location for "data" should be /opt/senzing/data, hence the "mv" command.
 
-RUN apt -y install senzingapi${SENZING_VERSION} \
- && mv /opt/senzing/data/1.0.0/* /opt/senzing/data/
+RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
+ && mv /opt/senzing/data/1.0.0/* /opt/senzing/data/ \
  && mv /opt/senzing /opt/local-senzing
 
 # Finally, make the container a non-root container again.
 
 USER 1001
+
+# Runtime command:  Copy the baked in Senzing to mounted volume(s)
 
 CMD ["cp", "--recursive", "/opt/local-senzing", "/opt/senzing"]
