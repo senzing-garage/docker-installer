@@ -21,7 +21,44 @@ The Docker container is used to copy the "baked-in" Senzing files to mounted vol
 This alleviates the requirement for a root container seen in the
 [senzing/yum](https://github.com/Senzing/docker-yum) Docker container.
 
-## EULA
+### Contents
+
+1. [Expectations](#expectations)
+1. [Demonstrate](#demonstrate)
+    1. [EULA](#eula)
+    1. [Docker volumes](#docker-volumes)
+    1. [Docker network](#docker-network)
+    1. [Docker user](#docker-user)
+    1. [Database support](#database-support)
+    1. [External database](#external-database)
+    1. [Run Docker container](#run-docker-container)
+1. [Develop](#develop)
+    1. [Prerequisites for development](#prerequisites-for-development)
+    1. [Clone repository](#clone-repository)
+    1. [Build Docker image](#build-docker-image)
+1. [Advanced](#advanced)
+    1. [Configuration](#configuration)
+1. [Errors](#errors)
+1. [References](#references)
+
+#### Legend
+
+1. :thinking: - A "thinker" icon means that a little extra thinking may be required.
+   Perhaps there are some choices to be made.
+   Perhaps it's an optional step.
+1. :pencil2: - A "pencil" icon means that the instructions may need modification before performing.
+1. :warning: - A "warning" icon means that something tricky is happening, so pay attention.
+
+## Expectations
+
+- **Space:** This repository and demonstration require 6 GB free disk space.
+- **Time:** Budget 40 minutes to get the demonstration up-and-running, depending on CPU and network speeds.
+- **Background knowledge:** This repository assumes a working knowledge of:
+  - [Docker](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/docker.md)
+
+## Demonstrate
+
+### EULA
 
 To use the Senzing code, you must agree to the End User License Agreement (EULA).
 
@@ -31,7 +68,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
 
     <code>export SENZING_ACCEPT_EULA="&lt;the value from [this link](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md#senzing_accept_eula)&gt;"</code>
 
-## Environment variables
+### Environment variables
 
 1. :thinking: **Optional:**
    Only needed if a specific version of Senzing is required.
@@ -59,7 +96,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
     export SENZING_DOCKER_IMAGE_TAG="senzing/installer:latest"
     ```
 
-## Build Docker image
+### Build Docker image
 
 1. Run the `docker build` command.
    Example:
@@ -72,7 +109,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
         https://github.com/Senzing/docker-installer.git
     ```
 
-## Run Docker image
+### Run Docker image
 
 1. Specify where to install Senzing on local system.
    Example:
@@ -89,6 +126,62 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
         --volume ${SENZING_OPT_DIR}:/opt/senzing \
         ${SENZING_DOCKER_IMAGE_TAG}
     ```
+
+## Develop
+
+The following instructions are used when modifying and building the Docker image.
+
+### Prerequisites for development
+
+:thinking: The following tasks need to be complete before proceeding.
+These are "one-time tasks" which may already have been completed.
+
+1. The following software programs need to be installed:
+    1. [git](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-git.md)
+    1. [make](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-make.md)
+    1. [docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-docker.md)
+
+### Clone repository
+
+For more information on environment variables,
+see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md).
+
+1. Set these environment variable values:
+
+    ```console
+    export GIT_ACCOUNT=senzing
+    export GIT_REPOSITORY=docker-installer
+    export GIT_ACCOUNT_DIR=~/${GIT_ACCOUNT}.git
+    export GIT_REPOSITORY_DIR="${GIT_ACCOUNT_DIR}/${GIT_REPOSITORY}"
+    ```
+
+1. Using the environment variables values just set, follow steps in [clone-repository](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/clone-repository.md) to install the Git repository.
+
+### Build Docker image
+
+1. **Option #1:** Using `docker` command and GitHub.
+
+    ```console
+    sudo docker build \
+      --tag senzing/installer \
+      https://github.com/senzing/docker-installer.git
+    ```
+
+1. **Option #2:** Using `docker` command and local repository.
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    sudo docker build --tag senzing/installer .
+    ```
+
+1. **Option #3:** Using `make` command.
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    sudo make docker-build
+    ```
+
+    Note: `sudo make docker-build-development-cache` can be used to create cached Docker layers.
 
 ## Advanced
 
