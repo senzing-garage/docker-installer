@@ -29,6 +29,7 @@ This alleviates the root container requirement seen in the
     1. [Environment variables](#environment-variables)
     1. [Build image](#build-image)
 1. [Run](#run)
+    1. [Output directory](#output-directory)
     1. [Docker user](#docker-user)
     1. [Run image](#run-image)
 1. [Develop](#develop)
@@ -110,6 +111,23 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
 
 ## Run
 
+### Output directory
+
+1. :pencil2: Specify where to install Senzing on local system.
+   Example:
+
+    ```console
+    export SENZING_OPT_DIR=/opt/my-senzing
+    ```
+
+1. Make the output directory.
+   This ensures the correct ownership and permissions on the directory.
+   Example:
+
+    ```console
+    mkdir -p ${SENZING_OPT_DIR}
+    ```
+
 ### Docker user
 
 :thinking: **Optional:**  The Docker container runs as "USER 1001".
@@ -137,13 +155,6 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
     ```
 
 ### Run image
-
-1. Specify where to install Senzing on local system.
-   Example:
-
-    ```console
-    export SENZING_OPT_DIR=/opt/my-senzing
-    ```
 
 1. Run the `docker run` command.
    Example:
