@@ -70,7 +70,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
 ### Environment variables
 
 1. :pencil2: Specify Docker image name.
-   This allows container tags like `senzing/installer:1.15.1` to match the version of Senzing to be installed.
+   This allows container tags like `senzing/installer:1.15.2` to match the version of Senzing to be installed.
    Example:
 
     ```console
@@ -85,7 +85,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
        Example:
 
         ```console
-        export SENZING_APT_INSTALL_PACKAGE="senzing=1.15.1"
+        export SENZING_APT_INSTALL_PACKAGE="senzing=1.15.2"
         ```
 
     1. Create a `docker run` parameter with the value.

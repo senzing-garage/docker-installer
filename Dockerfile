@@ -44,4 +44,4 @@ USER 1001
 
 # Runtime command:  Copy the baked in Senzing to mounted volume(s)
 
-CMD ["cp", "--recursive", "/opt/local-senzing", "/opt/senzing"]
+CMD ["cp", "--archive", "/opt/local-senzing/.", "/opt/senzing"]
