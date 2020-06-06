@@ -18,17 +18,19 @@ This repository shows how to create a Docker image that has Senzing
 [baked-in](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/baked-in.md).
 The Docker container is used to copy the "baked-in" Senzing files to mounted volumes.
 
-This alleviates the requirement for a root container seen in the
+This alleviates the root container requirement seen in the
 [senzing/yum](https://github.com/Senzing/docker-yum) Docker container.
 
 ### Contents
 
 1. [Expectations](#expectations)
-1. [Demonstrate](#demonstrate)
+1. [Build](#build)
     1. [EULA](#eula)
     1. [Environment variables](#environment-variables)
-    1. [Build Docker image](#build-docker-image)
-    1. [Run Docker image](#run-docker-image)
+    1. [Build image](#build-image)
+1. [Run](#run)
+    1. [Docker user](#docker-user)
+    1. [Run image](#run-image)
 1. [Develop](#develop)
     1. [Prerequisites for development](#prerequisites-for-development)
     1. [Clone repository](#clone-repository)
@@ -53,7 +55,7 @@ This alleviates the requirement for a root container seen in the
 - **Background knowledge:** This repository assumes a working knowledge of:
   - [Docker](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/docker.md)
 
-## Build Docker image
+## Build
 
 ### EULA
 
@@ -66,6 +68,14 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
     <code>export SENZING_ACCEPT_EULA="&lt;the value from [this link](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md#senzing_accept_eula)&gt;"</code>
 
 ### Environment variables
+
+1. :pencil2: Specify Docker image name.
+   This allows container tags like `senzing/installer:1.15.1` to match the version of Senzing to be installed.
+   Example:
+
+    ```console
+    export SENZING_DOCKER_IMAGE_TAG="senzing/installer:latest"
+    ```
 
 1. :thinking: **Optional:**
    Only needed if a specific version of Senzing is required.
@@ -85,15 +95,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
         export SENZING_APT_INSTALL_PACKAGE_PARAMETER="--build-arg SENZING_APT_INSTALL_PACKAGE=${SENZING_APT_INSTALL_PACKAGE}"
         ```
 
-1. Specify Docker image name.
-   This allows container tags like `senzing/installer:1.15.1` to match the version of Senzing to be installed.
-   Example:
-
-    ```console
-    export SENZING_DOCKER_IMAGE_TAG="senzing/installer:latest"
-    ```
-
-### Build Docker image
+### Build image
 
 1. Run the `docker build` command.
    Example:
@@ -106,7 +108,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
         https://github.com/Senzing/docker-installer.git
     ```
 
-## Run Docker container
+## Run
 
 ### Docker user
 
@@ -134,7 +136,7 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
     export SENZING_RUNAS_USER_PARAMETER="--user ${SENZING_RUNAS_USER}"
     ```
 
-### Run Docker image
+### Run image
 
 1. Specify where to install Senzing on local system.
    Example:
