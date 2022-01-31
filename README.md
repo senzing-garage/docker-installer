@@ -76,6 +76,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
 
     ```console
     export SENZING_API_VERSION="2.8.4"
+    export SENZING_API_BUILD="21311"
     ```
 
 ### Build image
@@ -86,12 +87,22 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
     ```console
     sudo docker build \
         --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA} \
-        --build-arg SENZING_APT_INSTALL_PACKAGE="senzingapi=${SENZING_API_VERSION}" \
+        --build-arg SENZING_APT_INSTALL_PACKAGE="senzingapi=${SENZING_API_VERSION}-${SENZING_API_BUILD}" \
         --tag senzing/installer:${SENZING_API_VERSION} \
         https://github.com/Senzing/docker-installer.git
     ```
 
 ## Run
+
+### Environment variables
+
+1. :pencil2: Specify Senzing version desired.
+   See [Senzing API Version History](https://senzing.com/releases/).
+   Example:
+
+    ```console
+    export SENZING_API_VERSION="2.8.4"
+    ```
 
 ### Output directory
 
@@ -145,7 +156,7 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
     docker run \
         --volume ${SENZING_OPT_DIR}:/opt/senzing \
         ${SENZING_RUNAS_USER_PARAMETER} \
-        ${SENZING_DOCKER_IMAGE_TAG}
+        senzing/installer:${SENZING_API_VERSION}
     ```
 
 ## Develop
