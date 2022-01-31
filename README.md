@@ -70,31 +70,13 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
 
 ### Environment variables
 
-1. :pencil2: Specify Docker image name.
-   This allows container tags like `senzing/installer:1.15.2` to match the version of Senzing to be installed.
+1. :pencil2: Specify Senzing version desired.
+   See [Senzing API Version History](https://senzing.com/releases/).
    Example:
 
     ```console
-    export SENZING_DOCKER_IMAGE_TAG="senzing/installer:latest"
+    export SENZING_API_VERSION="2.8.4"
     ```
-
-1. :thinking: **Optional:**
-   Only needed if a specific version of Senzing is required.
-   If `SENZING_APT_INSTALL_PACKAGE_PARAMETER` is not specified, the latest version of Senzing will be used.
-
-    1. :pencil2: Identify the Senzing package name to be installed.
-       Example:
-
-        ```console
-        export SENZING_APT_INSTALL_PACKAGE="senzing=1.15.2"
-        ```
-
-    1. Create a `docker run` parameter with the value.
-       Example:
-
-        ```console
-        export SENZING_APT_INSTALL_PACKAGE_PARAMETER="--build-arg SENZING_APT_INSTALL_PACKAGE=${SENZING_APT_INSTALL_PACKAGE}"
-        ```
 
 ### Build image
 
@@ -104,8 +86,8 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
     ```console
     sudo docker build \
         --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA} \
-        --tag ${SENZING_DOCKER_IMAGE_TAG} \
-        ${SENZING_APT_INSTALL_PACKAGE_PARAMETER} \
+        --build-arg SENZING_APT_INSTALL_PACKAGE="senzingapi=${SENZING_API_VERSION}" \
+        --tag senzing/installer:${SENZING_API_VERSION} \
         https://github.com/Senzing/docker-installer.git
     ```
 
