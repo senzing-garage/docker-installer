@@ -79,6 +79,8 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
     export SENZING_API_BUILD="21311"
     ```
 
+   To find the `SENZING_API_BUILD` for a particular Senzing API version, you can use `apt` or `yum` or email [support@senzing.com](mailto:support@senzing.com).
+
 ### Build image
 
 1. Run the `docker build` command.
@@ -94,7 +96,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
 
 ## Run
 
-### Environment variables
+### Environment variables for runtime
 
 1. :pencil2: Specify Senzing version desired.
    See [Senzing API Version History](https://senzing.com/releases/).
@@ -110,7 +112,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
    Example:
 
     ```console
-    export SENZING_OPT_DIR=/opt/my-senzing
+    export SENZING_OPT_DIR=~/my-senzing
     ```
 
 1. Make the output directory.
