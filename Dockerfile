@@ -35,7 +35,7 @@ RUN curl \
 #   Note: The system location for "data" should be /opt/senzing/data, hence the "mv" command.
 
 RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
- && mv /opt/senzing/data/1.0.0/* /opt/senzing/data/ \
+ && mv /opt/senzing/data/2.0.0/* /opt/senzing/data/ \
  && mv /opt/senzing /opt/local-senzing
 
 # Finally, make the container a non-root container again.
