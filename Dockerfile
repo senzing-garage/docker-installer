@@ -25,6 +25,7 @@ USER root
 RUN apt update \
  && apt -y install \
         # apt-transport-https \
+        apt-utils \
         curl \
         gnupg \
         # sudo \
