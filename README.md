@@ -30,7 +30,6 @@ This alleviates the root container requirement seen in the
     1. [Build image](#build-image)
 1. [Run](#run)
     1. [Output directory](#output-directory)
-    1. [Docker user](#docker-user)
     1. [Run image](#run-image)
 1. [Develop](#develop)
     1. [Prerequisites for development](#prerequisites-for-development)
