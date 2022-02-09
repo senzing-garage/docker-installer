@@ -19,6 +19,8 @@ ARG SENZING_APT_INSTALL_PACKAGE="senzingapi"
 # Need to be root to do "apt" operations.
 
 USER root
+
+# eliminate a couple of warning messages.
 ENV TERM=xterm
 
 # Install packages via apt.
@@ -26,7 +28,6 @@ ENV TERM=xterm
 RUN apt update \
  && apt -y install \
         # apt-transport-https \
-        # apt-utils \
         curl \
         gnupg \
         # sudo \
@@ -53,6 +54,11 @@ RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
 # -----------------------------------------------------------------------------
 
 FROM ${BASE_IMAGE} AS runner
+
+LABEL Name="senzing/installer" \
+      Maintainer="support@senzing.com" \
+      Version="1.0.2"
+
 
 # Finally, make the container a non-root container again.
 
