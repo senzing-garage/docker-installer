@@ -30,7 +30,6 @@ This alleviates the root container requirement seen in the
     1. [Build image](#build-image)
 1. [Run](#run)
     1. [Output directory](#output-directory)
-    1. [Docker user](#docker-user)
     1. [Run image](#run-image)
 1. [Develop](#develop)
     1. [Prerequisites for development](#prerequisites-for-development)
@@ -123,7 +122,16 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
     mkdir -p ${SENZING_OPT_DIR}
     ```
 
-### Docker user
+### Run image
+
+1. Run the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command.
+   Example:
+
+    ```console
+    docker run \
+        --volume ${SENZING_OPT_DIR}:/opt/senzing \
+        senzing/installer:${SENZING_API_VERSION}
+    ```
 
 :thinking: **Optional:**  The Docker container runs as "USER 1001".
 Use if a different userid (UID) is required.
@@ -142,22 +150,13 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
         export SENZING_RUNAS_USER=$(id -u):$(id -g)
         ```
 
-1. Construct parameter for `docker run`.
-   Example:
-
-    ```console
-    export SENZING_RUNAS_USER_PARAMETER="--user ${SENZING_RUNAS_USER}"
-    ```
-
-### Run image
-
-1. Run the `docker run` command.
+1. Run the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command.
    Example:
 
     ```console
     docker run \
         --volume ${SENZING_OPT_DIR}:/opt/senzing \
-        ${SENZING_RUNAS_USER_PARAMETER} \
+        --user ${SENZING_RUNAS_USER} \
         senzing/installer:${SENZING_API_VERSION}
     ```
 
@@ -217,10 +216,8 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/maste
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
-    sudo make docker-build
+    sudo --preserve-env make docker-build
     ```
-
-    Note: `sudo make docker-build-development-cache` can be used to create cached Docker layers.
 
 ## Advanced
 
