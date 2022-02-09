@@ -26,7 +26,7 @@ ENV TERM=xterm
 RUN apt update \
  && apt -y install \
         # apt-transport-https \
-        apt-utils \
+        # apt-utils \
         curl \
         gnupg \
         # sudo \
