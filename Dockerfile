@@ -27,10 +27,8 @@ ENV TERM=xterm
 
 RUN apt update \
  && apt -y install \
-        # apt-transport-https \
         curl \
         gnupg \
-        # sudo \
         wget
 
 # Install Senzing repository index.
@@ -40,14 +38,12 @@ RUN curl \
         https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.0-1_amd64.deb \
  && apt -y install /senzingrepo_1.0.0-1_amd64.deb \
  && apt update
-#  && rm /senzingrepo_1.0.0-1_amd64.deb
 
 # Install Senzing package.
 #   Note: The system location for "data" should be /opt/senzing/data, hence the "mv" command.
 
 RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
  && mv /opt/senzing/data/2.0.0/* /opt/senzing/data/
-#  && mv /opt/senzing /opt/local-senzing
 
 # -----------------------------------------------------------------------------
 # Stage: Final
