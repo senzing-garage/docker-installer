@@ -19,6 +19,7 @@ ARG SENZING_APT_INSTALL_PACKAGE="senzingapi"
 # Need to be root to do "apt" operations.
 
 USER root
+ENV TERM=xterm
 
 # Install packages via apt.
 
