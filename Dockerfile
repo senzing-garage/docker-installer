@@ -1,11 +1,11 @@
 ARG BASE_IMAGE=debian:11.2-slim@sha256:4c25ffa6ef572cf0d57da8c634769a08ae94529f7de5be5587ec8ce7b9b50f9c
 FROM ${BASE_IMAGE} as builder
 
-ENV REFRESHED_AT=2022-02-09
+ENV REFRESHED_AT=2022-03-04
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.0.2"
+      Version="1.0.3"
 
 # SENZING_ACCEPT_EULA to be replaced by --build-arg
 
@@ -53,7 +53,7 @@ FROM ${BASE_IMAGE} AS runner
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.0.2"
+      Version="1.0.3"
 
 
 # Finally, make the container a non-root container again.
@@ -66,4 +66,4 @@ COPY --from=builder /opt/senzing /opt/local-senzing
 
 # Runtime command:  Copy the baked in Senzing to mounted volume(s)
 
-CMD ["cp", "--archive", "/opt/local-senzing/.", "/opt/senzing"]
+CMD ["cp", "--recursive", "/opt/local-senzing/.", "/opt/senzing"]
