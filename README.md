@@ -83,7 +83,7 @@ Only one method need be used.
     ```
 
 1. :thinking: **Optional:**
-1. _Option #2:_ Specify Senzing version desired.
+   _Option #2:_ Specify Senzing version desired.
    See [Senzing API Version History](https://senzing.com/releases/).
    Example:
 
