@@ -116,7 +116,7 @@ Only one method need be used.
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="2.8.4"
+    export SENZING_VERSION_SENZINGAPI="3.0.0"
     ```
 
 ### Output directory
@@ -143,6 +143,7 @@ Only one method need be used.
 
     ```console
     docker run \
+        --rm \
         --volume ${SENZING_OPT_DIR}:/opt/senzing \
         senzing/installer:${SENZING_VERSION_SENZINGAPI}
     ```
