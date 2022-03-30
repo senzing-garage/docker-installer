@@ -1,16 +1,8 @@
 # docker-installer
 
-## Preamble
+## Synopsis
 
-At [Senzing](http://senzing.com),
-we strive to create GitHub documentation in a
-"[don't make me think](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/dont-make-me-think.md)" style.
-For the most part, instructions are copy and paste.
-Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
-Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
-If the instructions are not clear, please let us know by opening a new
-[Documentation issue](https://github.com/Senzing/template-python/issues/new?template=documentation_request.md)
-describing where we can improve.   Now on with the show...
+Create a docker image that can be used to install Senzing via a `cp` command.
 
 ## Overview
 
@@ -23,12 +15,15 @@ This alleviates the root container requirement seen in the
 
 ### Contents
 
+1. [Preamble](#preamble)
+    1. [Legend](#legend)
 1. [Expectations](#expectations)
 1. [Build](#build)
     1. [EULA](#eula)
     1. [Environment variables](#environment-variables)
     1. [Build image](#build-image)
 1. [Run](#run)
+    1. [Environment variables for runtime](#environment-variables-for-runtime)
     1. [Output directory](#output-directory)
     1. [Run image](#run-image)
 1. [Develop](#develop)
@@ -40,7 +35,19 @@ This alleviates the root container requirement seen in the
 1. [Errors](#errors)
 1. [References](#references)
 
-#### Legend
+## Preamble
+
+At [Senzing](http://senzing.com),
+we strive to create GitHub documentation in a
+"[don't make me think](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/dont-make-me-think.md)" style.
+For the most part, instructions are copy and paste.
+Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
+Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
+If the instructions are not clear, please let us know by opening a new
+[Documentation issue](https://github.com/Senzing/template-python/issues/new?template=documentation_request.md)
+describing where we can improve.   Now on with the show...
+
+### Legend
 
 1. :thinking: - A "thinker" icon means that a little extra thinking may be required.
    Perhaps there are some choices to be made.
@@ -116,7 +123,7 @@ Only one method need be used.
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="3.0.0"
+    export SENZING_VERSION_SENZINGAPI="2.8.4"
     ```
 
 ### Output directory

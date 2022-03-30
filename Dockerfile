@@ -55,7 +55,7 @@ FROM ${BASE_IMAGE} AS runner
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.0.3"
+      Version="1.1.0"
 
 
 # Finally, make the container a non-root container again.
