@@ -9,6 +9,9 @@ DOCKER_IMAGE_TAG ?= $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
 DOCKER_IMAGE_NAME ?= senzing/installer
 SENZING_ACCEPT_EULA ?= no
 SENZING_APT_INSTALL_PACKAGE ?= senzingapi
+SENZING_APT_REPOSITORY_PRODUCTION ?= "https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.0-1_amd64.deb"
+SENZING_APT_REPOSITORY_STAGING ?= "https://senzing-staging-apt.s3.amazonaws.com/senzingstagingrepo_1.0.0-1_amd64.deb"
+SENZING_DATA_VERSION ?= 3.0.0
 
 # -----------------------------------------------------------------------------
 # The first "make" target runs as default.
@@ -22,7 +25,7 @@ default: help
 # -----------------------------------------------------------------------------
 
 .PHONY: docker-build
-docker-build: docker-rmi-for-build
+docker-build:
 	docker build \
 		--build-arg SENZING_ACCEPT_EULA=$(SENZING_ACCEPT_EULA) \
 		--build-arg SENZING_APT_INSTALL_PACKAGE=$(SENZING_APT_INSTALL_PACKAGE) \
@@ -30,12 +33,15 @@ docker-build: docker-rmi-for-build
 		--tag $(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
 		.
 
-.PHONY: docker-build-development-cache
-docker-build-development-cache: docker-rmi-for-build-development-cache
+.PHONY: docker-build-from-staging
+docker-build:
 	docker build \
 		--build-arg SENZING_ACCEPT_EULA=$(SENZING_ACCEPT_EULA) \
 		--build-arg SENZING_APT_INSTALL_PACKAGE=$(SENZING_APT_INSTALL_PACKAGE) \
-		--tag $(DOCKER_IMAGE_TAG) \
+		--build-arg SENZING_APT_REPOSITORY=$(SENZING_APT_REPOSITORY_STAGING) \
+		--build-arg SENZING_DATA_VERSION=$(SENZING_DATA_VERSION) \
+		--tag $(DOCKER_IMAGE_NAME) \
+		--tag $(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
 		.
 
 # -----------------------------------------------------------------------------
@@ -48,12 +54,9 @@ docker-rmi-for-build:
 		$(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
 		$(DOCKER_IMAGE_NAME)
 
-.PHONY: docker-rmi-for-build-development-cache
-docker-rmi-for-build-development-cache:
-	-docker rmi --force $(DOCKER_IMAGE_TAG)
 
 .PHONY: clean
-clean: docker-rmi-for-build docker-rmi-for-build-development-cache
+clean: docker-rmi-for-build
 
 # -----------------------------------------------------------------------------
 # Help
