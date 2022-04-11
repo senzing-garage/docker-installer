@@ -111,7 +111,7 @@ Only one method need be used.
         --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA} \
         --build-arg SENZING_APT_INSTALL_PACKAGE="senzingapi=${SENZING_VERSION_SENZINGAPI_BUILD}" \
         --tag senzing/installer:${SENZING_VERSION_SENZINGAPI} \
-        https://github.com/Senzing/docker-installer.git
+        https://github.com/Senzing/docker-installer.git#main
     ```
 
 ## Run
@@ -220,7 +220,7 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/maste
     sudo docker build \
       --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA} \
       --tag senzing/installer \
-      https://github.com/senzing/docker-installer.git
+      https://github.com/senzing/docker-installer.git#main
     ```
 
 1. **Option #2:** Using `docker` command and local repository.
