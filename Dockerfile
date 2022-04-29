@@ -1,7 +1,7 @@
 ARG BASE_IMAGE=debian:11.3-slim@sha256:78fd65998de7a59a001d792fe2d3a6d2ea25b6f3f068e5c84881250373577414
 FROM ${BASE_IMAGE} as builder
 
-ENV REFRESHED_AT=2022-04-01
+ENV REFRESHED_AT=2022-04-30
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
@@ -60,11 +60,11 @@ RUN mkdir -p /opt/senzing
 
 # Support for msodbcsql17.
 
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-RUN curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list
-RUN apt-get update
-RUN apt -y install msodbcsql17 || true
-RUN mkdir -p /opt/microsoft
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+ && curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+ && apt-get update \
+ && apt -y install msodbcsql17 || true \
+ && mkdir -p /opt/microsoft
 
 # -----------------------------------------------------------------------------
 # Stage: Final
@@ -72,10 +72,11 @@ RUN mkdir -p /opt/microsoft
 
 FROM ${BASE_IMAGE} AS runner
 
+ENV REFRESHED_AT=2022-04-30
+
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.1.0"
-
+      Version="1.2.0"
 
 # Finally, make the container a non-root container again.
 

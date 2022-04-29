@@ -74,6 +74,16 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
 
     <code>export SENZING_ACCEPT_EULA="&lt;the value from [this link](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#senzing_accept_eula)&gt;"</code>
 
+1. :thinking: **Optional**
+   To install Microsoft's MS-SQL driver (`msodbcsql17`),
+   Microsoft's EULA must be accepted.
+   See [MSSQL_ACCEPT_EULA](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#mssql_accept_eula].
+   Example:
+
+   ```console
+   export MSSQL_ACCEPT_EULA=Y
+   ```
+
 ### Environment variables
 
 There are 2 options for specifying the version of Senzing to build.
@@ -81,22 +91,20 @@ The first method uses `source` to set environment variables for the latest build
 The second method is a manual method to specify environment variables.
 Only one method need be used.
 
-1. :thinking: **Optional:**
-   _Option #1:_ Set environment variables for latest version of Senzing.
+1. **Option #1:** Set environment variables for latest version of Senzing.
    Example:
 
     ```console
     source <(curl -X GET https://raw.githubusercontent.com/Senzing/knowledge-base/main/lists/senzing-versions-latest.sh)
     ```
 
-1. :thinking: **Optional:**
-   _Option #2:_ Specify Senzing version desired.
+1. **Option #2:** Specify Senzing version desired.
    See [Senzing API Version History](https://senzing.com/releases/).
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="2.8.4"
-    export SENZING_VERSION_SENZINGAPI_BUILD="2.8.4-21311"
+    export SENZING_VERSION_SENZINGAPI="2.8.8"
+    export SENZING_VERSION_SENZINGAPI_BUILD="2.8.8-22088"
     ```
 
    To find the `SENZING_VERSION_SENZINGAPI_BUILD` for a particular Senzing API version, you can use `apt` or `yum` or email [support@senzing.com](mailto:support@senzing.com).
@@ -108,7 +116,8 @@ Only one method need be used.
 
     ```console
     sudo docker build \
-        --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA} \
+        --build-arg ACCEPT_EULA=${MSSQL_ACCEPT_EULA:-no} \
+        --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA:-no} \
         --build-arg SENZING_APT_INSTALL_PACKAGE="senzingapi=${SENZING_VERSION_SENZINGAPI_BUILD}" \
         --tag senzing/installer:${SENZING_VERSION_SENZINGAPI} \
         https://github.com/Senzing/docker-installer.git#main
@@ -123,7 +132,7 @@ Only one method need be used.
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="2.8.4"
+    export SENZING_VERSION_SENZINGAPI="2.8.8"
     ```
 
 ### Output directory
