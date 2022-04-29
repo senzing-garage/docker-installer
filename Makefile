@@ -31,6 +31,7 @@ docker-build:
 		--build-arg ACCEPT_EULA=$(MSSQL_ACCEPT_EULA) \
 		--build-arg SENZING_ACCEPT_EULA=$(SENZING_ACCEPT_EULA) \
 		--build-arg SENZING_APT_INSTALL_PACKAGE=$(SENZING_APT_INSTALL_PACKAGE) \
+		--no-cache \
 	    --tag $(DOCKER_IMAGE_NAME) \
 		--tag $(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
 		.

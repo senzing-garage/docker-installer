@@ -23,7 +23,8 @@ ARG SENZING_DATA_VERSION=2.0.0
 
 USER root
 
-# eliminate a couple of warning messages.
+# Eliminate warning messages.
+
 ENV TERM=xterm
 
 # Install packages via apt.
@@ -46,17 +47,17 @@ RUN curl \
 # Install Senzing package.
 #   Note: The system location for "data" should be /opt/senzing/data, hence the "mv" command.
 
-#RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
-# && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/ \
-# && rmdir /opt/senzing/data/${SENZING_DATA_VERSION}
+RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
+ && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/ \
+ && rmdir /opt/senzing/data/${SENZING_DATA_VERSION}
 
 RUN mkdir -p /opt/senzing
 
 # Install senzing_governor.py.
 
-#RUN curl -X GET \
-#    --output /opt/senzing/g2/python/senzing_governor.py \
-#    https://raw.githubusercontent.com/Senzing/governor-postgresql-transaction-id/main/senzing_governor.py
+RUN curl -X GET \
+    --output /opt/senzing/g2/python/senzing_governor.py \
+    https://raw.githubusercontent.com/Senzing/governor-postgresql-transaction-id/main/senzing_governor.py
 
 # Support for msodbcsql17.
 
