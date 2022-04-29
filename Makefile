@@ -5,8 +5,9 @@ GIT_VERSION := $(shell git describe --always --tags --long --dirty | sed -e 's/\
 
 # Docker variables
 
-DOCKER_IMAGE_TAG ?= $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
+ACCEPT_EULA ?= no
 DOCKER_IMAGE_NAME ?= senzing/installer
+DOCKER_IMAGE_TAG ?= $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
 SENZING_ACCEPT_EULA ?= no
 SENZING_APT_INSTALL_PACKAGE ?= senzingapi
 SENZING_APT_REPOSITORY_PRODUCTION ?= "https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.0-1_amd64.deb"
@@ -27,6 +28,7 @@ default: help
 .PHONY: docker-build
 docker-build:
 	docker build \
+		--build-arg ACCEPT_EULA=$(ACCEPT_EULA) \
 		--build-arg SENZING_ACCEPT_EULA=$(SENZING_ACCEPT_EULA) \
 		--build-arg SENZING_APT_INSTALL_PACKAGE=$(SENZING_APT_INSTALL_PACKAGE) \
 	    --tag $(DOCKER_IMAGE_NAME) \
@@ -34,8 +36,9 @@ docker-build:
 		.
 
 .PHONY: docker-build-from-staging
-docker-build:
+docker-build-from-staging:
 	docker build \
+		--build-arg ACCEPT_EULA=$(ACCEPT_EULA) \		
 		--build-arg SENZING_ACCEPT_EULA=$(SENZING_ACCEPT_EULA) \
 		--build-arg SENZING_APT_INSTALL_PACKAGE=$(SENZING_APT_INSTALL_PACKAGE) \
 		--build-arg SENZING_APT_REPOSITORY=$(SENZING_APT_REPOSITORY_STAGING) \
