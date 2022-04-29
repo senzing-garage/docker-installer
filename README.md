@@ -77,7 +77,7 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
 1. :thinking: **Optional**
    To install Microsoft's MS-SQL driver (`msodbcsql17`),
    Microsoft's EULA must be accepted.
-   See [MSSQL_ACCEPT_EULA](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#mssql_accept_eula].
+   See [MSSQL_ACCEPT_EULA](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#mssql_accept_eula).
    Example:
 
    ```console
