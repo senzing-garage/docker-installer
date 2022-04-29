@@ -74,10 +74,13 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
 
     <code>export SENZING_ACCEPT_EULA="&lt;the value from [this link](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#senzing_accept_eula)&gt;"</code>
 
-1. :thinking: **Optional**
+:thinking: If using the the Microsoft MS-SQL database,
+you must agree to the Microsoft End User License Agreement (EULA).
+See [MSSQL_ACCEPT_EULA](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#mssql_accept_eula).
+
+1. **Optional**
    To install Microsoft's MS-SQL driver (`msodbcsql17`),
-   Microsoft's EULA must be accepted.
-   See [MSSQL_ACCEPT_EULA](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#mssql_accept_eula).
+   accept the Microsoft EULA.
    Example:
 
    ```console
@@ -141,7 +144,7 @@ Only one method need be used.
    Example:
 
     ```console
-    export SENZING_OPT_DIR=~/my-senzing
+    export SENZING_OPT_SENZING_DIR=~/my-senzing
     ```
 
 1. Make the output directory.
@@ -149,10 +152,12 @@ Only one method need be used.
    Example:
 
     ```console
-    mkdir -p ${SENZING_OPT_DIR}
+    mkdir -p ${SENZING_OPT_SENZING_DIR}
     ```
 
 ### Run image
+
+#### Install only Senzing binaries
 
 1. Run the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command.
    Example:
@@ -160,9 +165,11 @@ Only one method need be used.
     ```console
     docker run \
         --rm \
-        --volume ${SENZING_OPT_DIR}:/opt/senzing \
+        --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
         senzing/installer:${SENZING_VERSION_SENZINGAPI}
     ```
+
+#### As different user
 
 :thinking: **Optional:**  The Docker container runs as "USER 1001".
 Use if a different userid (UID) is required.
@@ -186,8 +193,32 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
 
     ```console
     docker run \
-        --volume ${SENZING_OPT_DIR}:/opt/senzing \
+        --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
         --user ${SENZING_RUNAS_USER} \
+        senzing/installer:${SENZING_VERSION_SENZINGAPI}
+    ```
+
+#### Install Microsoft MS-SQL Drivers
+
+1. :pencil2: Specify where to install Microsoft drivers and Senzing configuration  on local system.
+   Example:
+
+    ```console
+    export SENZING_ETC_DIR=${SENZING_OPT_SENZING_DIR}/etc
+    export SENZING_OPT_MICROSOFT_DIR=${SENZING_OPT_SENZING_DIR}/microsoft
+    ```
+
+1. Run the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command.
+   Example:
+
+    ```console
+    docker run \
+        --env SENZING_DEPLOY_ETC_OPT_SENZING=yes \
+        --env SENZING_DEPLOY_OPT_MICROSOFT=yes \
+        --rm \
+        --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
+        --volume ${SENZING_ETC_DIR}:/etc/opt/senzing \
+        --volume ${SENZING_OPT_MICROSOFT_DIR}:/opt/microsoft \
         senzing/installer:${SENZING_VERSION_SENZINGAPI}
     ```
 
@@ -257,7 +288,7 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/main/
 Configuration values specified by environment variable or command line parameter.
 
 - **[SENZING_ACCEPT_EULA](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#senzing_accept_eula)**
-- **[SENZING_OPT_DIR](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#senzing_opt_dir)**
+- **[SENZING_OPT_SENZING_DIR](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#SENZING_OPT_SENZING_DIR)**
 
 ## Errors
 

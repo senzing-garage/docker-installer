@@ -13,9 +13,8 @@ services:
     read_only: true
     restart: on-failure
     volumes:
-      - ${SENZING_DATA_VERSION_DIR:-/opt/senzing/data/2.0.0}:/opt/senzing/data
+      - ${SENZING_OPT_SENZING_DIR:-/opt/senzing}:/opt/senzing
       - ${SENZING_ETC_DIR:-/etc/opt/senzing}:/etc/opt/senzing
-      - ${SENZING_G2_DIR:-/opt/senzing/g2}:/opt/senzing/g2
       - ${SENZING_OPT_MICROSOFT_DIR:-/opt/microsoft}:/opt/microsoft
 
 networks:
