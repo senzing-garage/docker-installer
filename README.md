@@ -200,12 +200,20 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
 
 #### Install Microsoft MS-SQL Drivers
 
-1. :pencil2: Specify where to install Microsoft drivers and Senzing configuration  on local system.
+1. :pencil2: Specify where to install Microsoft drivers and Senzing configuration on local system.
    Example:
 
     ```console
     export SENZING_ETC_DIR=${SENZING_OPT_SENZING_DIR}/etc
     export SENZING_OPT_MICROSOFT_DIR=${SENZING_OPT_SENZING_DIR}/microsoft
+    ```
+
+1. Make directories.
+   Example:
+
+    ```console
+    mkdir -p ${SENZING_ETC_DIR}
+    mkdir -p ${SENZING_OPT_MICROSOFT_DIR}
     ```
 
 1. Run the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command.
