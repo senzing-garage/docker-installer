@@ -47,11 +47,9 @@ RUN curl \
 # Install Senzing package.
 #   Note: The system location for "data" should be /opt/senzing/data, hence the "mv" command.
 
-#RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
-# && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/ \
-# && rmdir /opt/senzing/data/${SENZING_DATA_VERSION}
-
-RUN mkdir -p /opt/senzing/g2/python
+RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
+ && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/ \
+ && rmdir /opt/senzing/data/${SENZING_DATA_VERSION}
 
 # Install senzing_governor.py.
 
