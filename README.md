@@ -221,8 +221,8 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
 
     ```console
     docker run \
-        --env SENZING_DEPLOY_ETC_OPT_SENZING=yes \
-        --env SENZING_DEPLOY_OPT_MICROSOFT=yes \
+        --env SENZING_DEPLOY_ETC_OPT_SENZING=true \
+        --env SENZING_DEPLOY_OPT_MICROSOFT=true \
         --rm \
         --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
         --volume ${SENZING_ETC_DIR}:/etc/opt/senzing \

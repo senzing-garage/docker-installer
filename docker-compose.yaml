@@ -5,8 +5,8 @@ services:
     container_name: senzing-installer
     environment:
 #     See https://github.com/Senzing/docker-installer#configuration
-      SENZING_DEPLOY_ETC_OPT_SENZING: yes
-      SENZING_DEPLOY_OPT_MICROSOFT: yes
+      SENZING_DEPLOY_ETC_OPT_SENZING: true
+      SENZING_DEPLOY_OPT_MICROSOFT: true
     image: senzing/installer:${SENZING_DOCKER_IMAGE_VERSION_SENZING_INSTALLER:-latest}
     networks:
       - senzing
