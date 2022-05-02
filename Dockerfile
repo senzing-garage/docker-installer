@@ -1,7 +1,7 @@
 ARG BASE_IMAGE=debian:11.3-slim@sha256:78fd65998de7a59a001d792fe2d3a6d2ea25b6f3f068e5c84881250373577414
 FROM ${BASE_IMAGE} as builder
 
-ENV REFRESHED_AT=2022-04-30
+ENV REFRESHED_AT=2022-05-02
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
@@ -47,11 +47,11 @@ RUN curl \
 # Install Senzing package.
 #   Note: The system location for "data" should be /opt/senzing/data, hence the "mv" command.
 
-RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
- && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/ \
- && rmdir /opt/senzing/data/${SENZING_DATA_VERSION}
+#RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
+# && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/ \
+# && rmdir /opt/senzing/data/${SENZING_DATA_VERSION}
 
-RUN mkdir -p /opt/senzing
+RUN mkdir -p /opt/senzing/g2/python
 
 # Install senzing_governor.py.
 
@@ -73,7 +73,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 
 FROM ${BASE_IMAGE} AS runner
 
-ENV REFRESHED_AT=2022-04-30
+ENV REFRESHED_AT=2022-05-02
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
