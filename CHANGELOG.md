@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 [markdownlint](https://dlaa.me/markdownlint/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2022-05-02
+
+### Added to 1.2.0
+
+- Support for msodbcsql17
+- Support for `/etc/opt/senzing`
+- Support for `senzing_governor.py`
+
 ## [1.1.0] - 2022-03-30
 
 ### Added to 1.1.0
