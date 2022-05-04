@@ -13,7 +13,7 @@ ARG ACCEPT_EULA=no
 ARG SENZING_ACCEPT_EULA=no
 ARG SENZING_APT_INSTALL_PACKAGE="senzingapi"
 ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.0-1_amd64.deb"
-ARG SENZING_DATA_VERSION=2.0.0
+ARG SENZING_DATA_VERSION=3.0.0
 
 # -----------------------------------------------------------------------------
 # Stage: builder
