@@ -1,7 +1,7 @@
-ARG BASE_IMAGE=debian:11.3-slim@sha256:78fd65998de7a59a001d792fe2d3a6d2ea25b6f3f068e5c84881250373577414
+ARG BASE_IMAGE=debian:11.3-slim@sha256:f75d8a3ac10acdaa9be6052ea5f28bcfa56015ff02298831994bd3e6d66f7e57
 FROM ${BASE_IMAGE} as builder
 
-ENV REFRESHED_AT=2022-05-02
+ENV REFRESHED_AT=2022-05-09
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
@@ -71,7 +71,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 
 FROM ${BASE_IMAGE} AS runner
 
-ENV REFRESHED_AT=2022-05-02
+ENV REFRESHED_AT=2022-05-09
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
