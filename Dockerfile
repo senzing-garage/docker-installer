@@ -1,11 +1,11 @@
 ARG BASE_IMAGE=debian:11.3-slim@sha256:78fd65998de7a59a001d792fe2d3a6d2ea25b6f3f068e5c84881250373577414
 FROM ${BASE_IMAGE} as builder
 
-ENV REFRESHED_AT=2022-05-02
+ENV REFRESHED_AT=2022-05-09
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.2.0"
+      Version="1.2.1"
 
 # ACCEPT_EULA and SENZING_ACCEPT_EULA to be replaced by --build-arg
 
@@ -71,11 +71,11 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 
 FROM ${BASE_IMAGE} AS runner
 
-ENV REFRESHED_AT=2022-05-02
+ENV REFRESHED_AT=2022-05-09
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.2.0"
+      Version="1.2.1"
 
 # Finally, make the container a non-root container again.
 
