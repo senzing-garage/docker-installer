@@ -19,5 +19,5 @@ services:
 
 networks:
   senzing:
-    external:
-      name: ${SENZING_DOCKER_NETWORK:-senzing-network}
+    external: true
+    name: ${SENZING_DOCKER_NETWORK:-senzing-network}
