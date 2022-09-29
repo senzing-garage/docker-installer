@@ -5,7 +5,7 @@ ENV REFRESHED_AT=2022-09-27
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.2.1"
+      Version="1.3.1"
 
 # ACCEPT_EULA and SENZING_ACCEPT_EULA to be replaced by --build-arg
 
@@ -75,7 +75,7 @@ ENV REFRESHED_AT=2022-09-27
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.2.1"
+      Version="1.3.1"
 
 # Finally, make the container a non-root container again.
 
