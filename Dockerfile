@@ -1,11 +1,11 @@
-ARG BASE_IMAGE=debian:11.6-slim@sha256:98d3b4b0cee264301eb1354e0b549323af2d0633e1c43375d0b25c01826b6790
+ARG BASE_IMAGE=debian:11.6-slim@sha256:7acda01e55b086181a6fa596941503648e423091ca563258e2c1657d140355b1
 FROM ${BASE_IMAGE} as builder
 
-ENV REFRESHED_AT=2023-01-12
+ENV REFRESHED_AT=2023-04-03
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.3.1"
+      Version="1.3.2"
 
 # ACCEPT_EULA and SENZING_ACCEPT_EULA to be replaced by --build-arg
 
@@ -13,7 +13,7 @@ ARG ACCEPT_EULA=no
 ARG SENZING_ACCEPT_EULA=no
 ARG SENZING_APT_INSTALL_PACKAGE="senzingapi"
 ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.0-1_amd64.deb"
-ARG SENZING_DATA_VERSION=3.0.0
+ARG SENZING_DATA_VERSION=4.0.0
 
 # -----------------------------------------------------------------------------
 # Stage: builder
@@ -71,11 +71,11 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 
 FROM ${BASE_IMAGE} AS runner
 
-ENV REFRESHED_AT=2023-01-12
+ENV REFRESHED_AT=2023-04-03
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.3.1"
+      Version="1.3.2"
 
 # Finally, make the container a non-root container again.
 
