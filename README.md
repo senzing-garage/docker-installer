@@ -232,7 +232,6 @@ Configuration values specified by environment variable or command line parameter
 
 ## References
 
-- [Command reference](https://hub.senzing.com/senzing-tools/senzing-tools_init-database.html)
 - [Development](docs/development.md)
 - [Errors](docs/errors.md)
 - [Examples](docs/examples.md)
