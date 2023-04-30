@@ -99,8 +99,8 @@ Only one method need be used.
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="2.8.8"
-    export SENZING_VERSION_SENZINGAPI_BUILD="2.8.8-22088"
+    export SENZING_VERSION_SENZINGAPI="3.5.1"
+    export SENZING_VERSION_SENZINGAPI_BUILD="3.5.1-23104"
     ```
 
    To find the `SENZING_VERSION_SENZINGAPI_BUILD` for a particular Senzing API version, you can use `apt` or `yum` or email [support@senzing.com](mailto:support@senzing.com).
@@ -128,7 +128,7 @@ Only one method need be used.
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="2.8.8"
+    export SENZING_VERSION_SENZINGAPI="3.5.1"
     ```
 
 ### Output directory
