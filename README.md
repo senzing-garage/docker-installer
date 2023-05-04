@@ -92,6 +92,7 @@ Only one method need be used.
 
     ```console
     source <(curl -X GET https://raw.githubusercontent.com/Senzing/knowledge-base/main/lists/senzing-versions-latest.sh)
+
     ```
 
 1. **Option #2:** Specify Senzing version desired.
@@ -101,6 +102,7 @@ Only one method need be used.
     ```console
     export SENZING_VERSION_SENZINGAPI="3.5.1"
     export SENZING_VERSION_SENZINGAPI_BUILD="3.5.1-23104"
+
     ```
 
    To find the `SENZING_VERSION_SENZINGAPI_BUILD` for a particular Senzing API version, you can use `apt` or `yum` or email [support@senzing.com](mailto:support@senzing.com).
@@ -117,6 +119,7 @@ Only one method need be used.
         --build-arg SENZING_APT_INSTALL_PACKAGE="senzingapi=${SENZING_VERSION_SENZINGAPI_BUILD}" \
         --tag senzing/installer:${SENZING_VERSION_SENZINGAPI} \
         https://github.com/Senzing/docker-installer.git#main
+
     ```
 
 ## Run
@@ -129,6 +132,7 @@ Only one method need be used.
 
     ```console
     export SENZING_VERSION_SENZINGAPI="3.5.1"
+
     ```
 
 ### Output directory
@@ -138,6 +142,7 @@ Only one method need be used.
 
     ```console
     export SENZING_OPT_SENZING_DIR=~/my-senzing
+
     ```
 
 1. Make the output directory.
@@ -146,6 +151,7 @@ Only one method need be used.
 
     ```console
     mkdir -p ${SENZING_OPT_SENZING_DIR}
+
     ```
 
 ### Run image
@@ -160,6 +166,7 @@ Only one method need be used.
         --rm \
         --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
         senzing/installer:${SENZING_VERSION_SENZINGAPI}
+
     ```
 
 #### As different user
@@ -173,12 +180,14 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
 
         ```console
         export SENZING_RUNAS_USER="0"
+
         ```
 
     1. **Example #2:** Use current user.
 
         ```console
         export SENZING_RUNAS_USER=$(id -u):$(id -g)
+
         ```
 
 1. Run the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command.
@@ -189,6 +198,7 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
         --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
         --user ${SENZING_RUNAS_USER} \
         senzing/installer:${SENZING_VERSION_SENZINGAPI}
+
     ```
 
 #### Install Microsoft MS-SQL Drivers
@@ -199,6 +209,7 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
     ```console
     export SENZING_ETC_DIR=${SENZING_OPT_SENZING_DIR}/etc
     export SENZING_OPT_MICROSOFT_DIR=${SENZING_OPT_SENZING_DIR}/microsoft
+
     ```
 
 1. Make directories.
@@ -207,6 +218,7 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
     ```console
     mkdir -p ${SENZING_ETC_DIR}
     mkdir -p ${SENZING_OPT_MICROSOFT_DIR}
+
     ```
 
 1. Run the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command.
@@ -221,6 +233,7 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
         --volume ${SENZING_ETC_DIR}:/etc/opt/senzing \
         --volume ${SENZING_OPT_MICROSOFT_DIR}:/opt/microsoft \
         senzing/installer:${SENZING_VERSION_SENZINGAPI}
+
     ```
 
 ### Parameters
