@@ -26,13 +26,6 @@ This alleviates the root container requirement seen in the
     1. [Environment variables for runtime](#environment-variables-for-runtime)
     1. [Output directory](#output-directory)
     1. [Run image](#run-image)
-1. [Develop](#develop)
-    1. [Prerequisites for development](#prerequisites-for-development)
-    1. [Clone repository](#clone-repository)
-    1. [Build Docker image](#build-docker-image)
-1. [Advanced](#advanced)
-    1. [Configuration](#configuration)
-1. [Errors](#errors)
 1. [References](#references)
 
 ## Preamble
@@ -99,6 +92,7 @@ Only one method need be used.
 
     ```console
     source <(curl -X GET https://raw.githubusercontent.com/Senzing/knowledge-base/main/lists/senzing-versions-latest.sh)
+
     ```
 
 1. **Option #2:** Specify Senzing version desired.
@@ -106,8 +100,9 @@ Only one method need be used.
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="2.8.8"
-    export SENZING_VERSION_SENZINGAPI_BUILD="2.8.8-22088"
+    export SENZING_VERSION_SENZINGAPI="3.5.1"
+    export SENZING_VERSION_SENZINGAPI_BUILD="3.5.1-23104"
+
     ```
 
    To find the `SENZING_VERSION_SENZINGAPI_BUILD` for a particular Senzing API version, you can use `apt` or `yum` or email [support@senzing.com](mailto:support@senzing.com).
@@ -124,6 +119,7 @@ Only one method need be used.
         --build-arg SENZING_APT_INSTALL_PACKAGE="senzingapi=${SENZING_VERSION_SENZINGAPI_BUILD}" \
         --tag senzing/installer:${SENZING_VERSION_SENZINGAPI} \
         https://github.com/Senzing/docker-installer.git#main
+
     ```
 
 ## Run
@@ -135,7 +131,8 @@ Only one method need be used.
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="2.8.8"
+    export SENZING_VERSION_SENZINGAPI="3.5.1"
+
     ```
 
 ### Output directory
@@ -145,6 +142,7 @@ Only one method need be used.
 
     ```console
     export SENZING_OPT_SENZING_DIR=~/my-senzing
+
     ```
 
 1. Make the output directory.
@@ -153,6 +151,7 @@ Only one method need be used.
 
     ```console
     mkdir -p ${SENZING_OPT_SENZING_DIR}
+
     ```
 
 ### Run image
@@ -167,6 +166,7 @@ Only one method need be used.
         --rm \
         --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
         senzing/installer:${SENZING_VERSION_SENZINGAPI}
+
     ```
 
 #### As different user
@@ -180,12 +180,14 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
 
         ```console
         export SENZING_RUNAS_USER="0"
+
         ```
 
     1. **Example #2:** Use current user.
 
         ```console
         export SENZING_RUNAS_USER=$(id -u):$(id -g)
+
         ```
 
 1. Run the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command.
@@ -196,6 +198,7 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
         --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
         --user ${SENZING_RUNAS_USER} \
         senzing/installer:${SENZING_VERSION_SENZINGAPI}
+
     ```
 
 #### Install Microsoft MS-SQL Drivers
@@ -206,6 +209,7 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
     ```console
     export SENZING_ETC_DIR=${SENZING_OPT_SENZING_DIR}/etc
     export SENZING_OPT_MICROSOFT_DIR=${SENZING_OPT_SENZING_DIR}/microsoft
+
     ```
 
 1. Make directories.
@@ -214,6 +218,7 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
     ```console
     mkdir -p ${SENZING_ETC_DIR}
     mkdir -p ${SENZING_OPT_MICROSOFT_DIR}
+
     ```
 
 1. Run the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command.
@@ -228,78 +233,18 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
         --volume ${SENZING_ETC_DIR}:/etc/opt/senzing \
         --volume ${SENZING_OPT_MICROSOFT_DIR}:/opt/microsoft \
         senzing/installer:${SENZING_VERSION_SENZINGAPI}
+
     ```
 
-## Develop
-
-The following instructions are used when modifying and building the Docker image.
-
-### Prerequisites for development
-
-:thinking: The following tasks need to be complete before proceeding.
-These are "one-time tasks" which may already have been completed.
-
-1. The following software programs need to be installed:
-    1. [git](https://github.com/Senzing/knowledge-base/blob/main/WHATIS/git.md)
-    1. [make](https://github.com/Senzing/knowledge-base/blob/main/WHATIS/make.md)
-    1. [docker](https://github.com/Senzing/knowledge-base/blob/main/WHATIS/docker.md)
-
-### Clone repository
-
-For more information on environment variables,
-see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md).
-
-1. Set these environment variable values:
-
-    ```console
-    export GIT_ACCOUNT=senzing
-    export GIT_REPOSITORY=docker-installer
-    export GIT_ACCOUNT_DIR=~/${GIT_ACCOUNT}.git
-    export GIT_REPOSITORY_DIR="${GIT_ACCOUNT_DIR}/${GIT_REPOSITORY}"
-    ```
-
-1. Using the environment variables values just set, follow steps in [clone-repository](https://github.com/Senzing/knowledge-base/blob/main/HOWTO/clone-repository.md) to install the Git repository.
-
-### Build Docker image
-
-1. **Option #1:** Using `docker` command and GitHub.
-
-    ```console
-    sudo docker build \
-      --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA} \
-      --tag senzing/installer \
-      https://github.com/senzing/docker-installer.git#main
-    ```
-
-1. **Option #2:** Using `docker` command and local repository.
-
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    sudo docker build \
-      --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA} \
-      --tag senzing/installer \
-      .
-    ```
-
-1. **Option #3:** Using `make` command.
-   Note: [SENZING_ACCEPT_EULA](#eula) environment variable must be set.
-
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    sudo --preserve-env make docker-build
-    ```
-
-## Advanced
-
-### Configuration
+### Parameters
 
 Configuration values specified by environment variable or command line parameter.
 
 - **[SENZING_ACCEPT_EULA](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#senzing_accept_eula)**
 - **[SENZING_OPT_SENZING_DIR](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#SENZING_OPT_SENZING_DIR)**
 
-## Errors
-
-1. See [docs/errors.md](docs/errors.md).
-
 ## References
+
+- [Development](docs/development.md)
+- [Errors](docs/errors.md)
+- [Examples](docs/examples.md)
