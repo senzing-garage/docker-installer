@@ -13,7 +13,7 @@ ARG ACCEPT_EULA=no
 ARG SENZING_ACCEPT_EULA=no
 ARG SENZING_APT_INSTALL_PACKAGE="senzingapi"
 ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.0-1_amd64.deb"
-ARG SENZING_DATA_VERSION=4.0.1
+ARG SENZING_DATA_VERSION=4.0
 
 # -----------------------------------------------------------------------------
 # Stage: builder
@@ -47,15 +47,9 @@ RUN curl \
 # Install Senzing package.
 #   Note: The system location for "data" should be /opt/senzing/data, hence the "mv" command.
 
-#RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
-# && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/ \
-# && rmdir /opt/senzing/data/${SENZING_DATA_VERSION}
-
-RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE}
-RUN ls -la /opt/senzing/data
-RUN echo ${SENZING_DATA_VERSION}
-RUN mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/
-RUN rmdir /opt/senzing/data/${SENZING_DATA_VERSION}
+RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
+ && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/ \
+ && rmdir /opt/senzing/data/${SENZING_DATA_VERSION}
 
 # Install senzing_governor.py.
 
