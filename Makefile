@@ -58,7 +58,6 @@ docker-rmi-for-build:
 		$(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
 		$(DOCKER_IMAGE_NAME)
 
-
 .PHONY: clean
 clean: docker-rmi-for-build
 
