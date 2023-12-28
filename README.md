@@ -1,5 +1,17 @@
 # docker-installer
 
+If you are beginning your journey with
+[Senzing](https://senzing.com/),
+please start with
+[Senzing Quick Start guides](https://docs.senzing.com/quickstart/).
+
+You are in the
+[Senzing Garage](https://github.com/senzing-garage)
+where projects are "tinkered" on.
+Although this GitHub repository may help you understand an approach to using Senzing,
+it's not considered to be "production ready" and is not considered to be part of the Senzing product.
+Heck, it may not even be appropriate for your application of Senzing!
+
 ## Synopsis
 
 Create a docker image that can be used to install Senzing via a `cp` command.
@@ -7,11 +19,11 @@ Create a docker image that can be used to install Senzing via a `cp` command.
 ## Overview
 
 This repository shows how to create a Docker image that has Senzing
-[baked-in](https://github.com/Senzing/knowledge-base/blob/main/WHATIS/baked-in.md).
+[baked-in](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/baked-in.md).
 The Docker container is used to copy the "baked-in" Senzing files to mounted volumes.
 
 This alleviates the root container requirement seen in the
-[senzing/yum](https://github.com/Senzing/docker-yum) Docker container.
+[senzing/yum](https://github.com/senzing-garage/docker-yum) Docker container.
 
 ### Contents
 
@@ -32,12 +44,12 @@ This alleviates the root container requirement seen in the
 
 At [Senzing](http://senzing.com),
 we strive to create GitHub documentation in a
-"[don't make me think](https://github.com/Senzing/knowledge-base/blob/main/WHATIS/dont-make-me-think.md)" style.
+"[don't make me think](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/dont-make-me-think.md)" style.
 For the most part, instructions are copy and paste.
 Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
 Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
 If the instructions are not clear, please let us know by opening a new
-[Documentation issue](https://github.com/Senzing/template-python/issues/new?template=documentation_request.md)
+[Documentation issue](https://github.com/senzing-garage/template-python/issues/new?template=documentation_request.md)
 describing where we can improve.   Now on with the show...
 
 ### Legend
@@ -53,7 +65,7 @@ describing where we can improve.   Now on with the show...
 - **Space:** This repository and demonstration require 6 GB free disk space.
 - **Time:** Budget 40 minutes to get the demonstration up-and-running, depending on CPU and network speeds.
 - **Background knowledge:** This repository assumes a working knowledge of:
-  - [Docker](https://github.com/Senzing/knowledge-base/blob/main/WHATIS/docker.md)
+  - [Docker](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md)
 
 ## Build
 
@@ -65,11 +77,11 @@ To use the Senzing code, you must agree to the End User License Agreement (EULA)
    This ensures that you make a conscious effort to accept the EULA.
    Example:
 
-    <code>export SENZING_ACCEPT_EULA="&lt;the value from [this link](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#senzing_accept_eula)&gt;"</code>
+    <code>export SENZING_ACCEPT_EULA="&lt;the value from [this link](https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#senzing_accept_eula)&gt;"</code>
 
 :thinking: If using the the Microsoft MS-SQL database,
 you must agree to the Microsoft End User License Agreement (EULA).
-See [MSSQL_ACCEPT_EULA](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#mssql_accept_eula).
+See [MSSQL_ACCEPT_EULA](https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#mssql_accept_eula).
 
 1. **Optional**
    To install Microsoft's MS-SQL driver (`msodbcsql17`),
@@ -118,7 +130,7 @@ Only one method need be used.
         --build-arg SENZING_ACCEPT_EULA=${SENZING_ACCEPT_EULA:-no} \
         --build-arg SENZING_APT_INSTALL_PACKAGE="senzingapi=${SENZING_VERSION_SENZINGAPI_BUILD}" \
         --tag senzing/installer:${SENZING_VERSION_SENZINGAPI} \
-        https://github.com/Senzing/docker-installer.git#main
+        https://github.com/senzing-garage/docker-installer.git#main
 
     ```
 
@@ -240,8 +252,8 @@ Reference: [docker run --user](https://docs.docker.com/engine/reference/run/#use
 
 Configuration values specified by environment variable or command line parameter.
 
-- **[SENZING_ACCEPT_EULA](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#senzing_accept_eula)**
-- **[SENZING_OPT_SENZING_DIR](https://github.com/Senzing/knowledge-base/blob/main/lists/environment-variables.md#SENZING_OPT_SENZING_DIR)**
+- **[SENZING_ACCEPT_EULA](https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#senzing_accept_eula)**
+- **[SENZING_OPT_SENZING_DIR](https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#SENZING_OPT_SENZING_DIR)**
 
 ## References
 
