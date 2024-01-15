@@ -12,7 +12,7 @@ LABEL Name="senzing/installer" \
 ARG ACCEPT_EULA=no
 ARG SENZING_ACCEPT_EULA=no
 ARG SENZING_APT_INSTALL_PACKAGE="senzingapi"
-ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.0-1_amd64.deb"
+ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.1-1_all.deb"
 ARG SENZING_DATA_VERSION=4.0.1
 
 # -----------------------------------------------------------------------------
@@ -38,10 +38,10 @@ RUN apt update \
 # Install Senzing repository index.
 
 RUN curl \
-        --output /senzingrepo_1.0.0-1_amd64.deb \
+        --output /senzingrepo_1.0.1-1_all.deb \
         ${SENZING_APT_REPOSITORY_URL} \
  && apt -y install \
-        /senzingrepo_1.0.0-1_amd64.deb \
+        /senzingrepo_1.0.1-1_all.deb \
  && apt update
 
 # Install Senzing package.
