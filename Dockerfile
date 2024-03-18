@@ -5,7 +5,7 @@ ENV REFRESHED_AT=2024-03-18
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.3.3"
+      Version="1.3.4"
 
 # ACCEPT_EULA and SENZING_ACCEPT_EULA to be replaced by --build-arg
 
@@ -13,7 +13,7 @@ ARG ACCEPT_EULA=no
 ARG SENZING_ACCEPT_EULA=no
 ARG SENZING_APT_INSTALL_PACKAGE="senzingapi"
 ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.1-1_all.deb"
-ARG SENZING_DATA_VERSION=4.0.1
+ARG SENZING_DATA_VERSION=4.0
 
 # -----------------------------------------------------------------------------
 # Stage: builder
@@ -48,8 +48,7 @@ RUN curl \
 #   Note: The system location for "data" should be /opt/senzing/data, hence the "mv" command.
 
 RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
- && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/ \
- && rmdir /opt/senzing/data/${SENZING_DATA_VERSION}
+ && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/
 
 # Install senzing_governor.py.
 
@@ -75,7 +74,7 @@ ENV REFRESHED_AT=2024-03-18
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.3.3"
+      Version="1.3.4"
 
 # Finally, make the container a non-root container again.
 
