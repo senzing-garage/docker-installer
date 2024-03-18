@@ -1,11 +1,11 @@
-ARG BASE_IMAGE=debian:11.8-slim@sha256:19664a5752dddba7f59bb460410a0e1887af346e21877fa7cec78bfd3cb77da5
+ARG BASE_IMAGE=debian:11.9-slim@sha256:a165446a88794db4fec31e35e9441433f9552ae048fb1ed26df352d2b537cb96
 FROM ${BASE_IMAGE} as builder
 
-ENV REFRESHED_AT=2023-11-14
+ENV REFRESHED_AT=2024-03-18
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.3.3"
+      Version="1.3.4"
 
 # ACCEPT_EULA and SENZING_ACCEPT_EULA to be replaced by --build-arg
 
@@ -13,7 +13,7 @@ ARG ACCEPT_EULA=no
 ARG SENZING_ACCEPT_EULA=no
 ARG SENZING_APT_INSTALL_PACKAGE="senzingapi"
 ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.1-1_all.deb"
-ARG SENZING_DATA_VERSION=4.0.1
+ARG SENZING_DATA_VERSION=4.0
 
 # -----------------------------------------------------------------------------
 # Stage: builder
@@ -38,18 +38,18 @@ RUN apt update \
 # Install Senzing repository index.
 
 RUN curl \
-        --output /senzingrepo_1.0.1-1_all.deb \
-        ${SENZING_APT_REPOSITORY_URL} \
+      --output /senzingrepo_1.0.1-1_all.deb \
+      ${SENZING_APT_REPOSITORY_URL} \
  && apt -y install \
-        /senzingrepo_1.0.1-1_all.deb \
- && apt update
+      /senzingrepo_1.0.1-1_all.deb \
+ && apt update \
+ && rm /senzingrepo_1.0.1-1_all.deb
 
 # Install Senzing package.
 #   Note: The system location for "data" should be /opt/senzing/data, hence the "mv" command.
 
 RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
- && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/ \
- && rmdir /opt/senzing/data/${SENZING_DATA_VERSION}
+ && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/
 
 # Install senzing_governor.py.
 
@@ -71,11 +71,11 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 
 FROM ${BASE_IMAGE} AS runner
 
-ENV REFRESHED_AT=2023-11-14
+ENV REFRESHED_AT=2024-03-18
 
 LABEL Name="senzing/installer" \
       Maintainer="support@senzing.com" \
-      Version="1.3.3"
+      Version="1.3.4"
 
 # Finally, make the container a non-root container again.
 
