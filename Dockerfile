@@ -23,9 +23,9 @@ USER root
 
 ENV TERM=xterm
 
-# Install packages via apt.
+# Install packages via apt-get.
 
-RUN apt update \
+RUN apt-get update \
   && apt-get -y install \
   curl \
   gnupg \
@@ -36,16 +36,18 @@ RUN apt update \
 RUN curl \
   --output /senzingrepo_2.0.0-1_all.deb \
   ${SENZING_APT_REPOSITORY_URL} \
-  && apt -y install \
+  && apt-get -y install \
   /senzingrepo_2.0.0-1_all.deb \
-  && apt update \
+  && apt-get update \
   && rm /senzingrepo_2.0.0-1_all.deb
 
 # Install Senzing package.
 #   Note: The system location for "data" should be /opt/senzing/data, hence the "mv" command.
 
-RUN apt -y install ${SENZING_APT_INSTALL_PACKAGE} \
+RUN apt-get -y install ${SENZING_APT_INSTALL_PACKAGE} \
   && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/
+
+HEALTHCHECK CMD sudo yum list installed | grep ${SENZING_APT_INSTALL_PACKAGE}
 
 # Install senzing_governor.py.
 
