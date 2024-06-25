@@ -88,36 +88,28 @@ See [MSSQL_ACCEPT_EULA](https://github.com/senzing-garage/knowledge-base/blob/ma
    accept the Microsoft EULA.
    Example:
 
-   ```console
-   export MSSQL_ACCEPT_EULA=Y
-   ```
+    ```console
+    export MSSQL_ACCEPT_EULA=Y
+    ```
 
 ### Environment variables
 
-There are 2 options for specifying the version of Senzing to build.
-The first method uses `source` to set environment variables for the latest build.
-The second method is a manual method to specify environment variables.
-Only one method need be used.
-
-1. **Option #1:** Set environment variables for latest version of Senzing.
+1. List Senzing versions.
    Example:
 
     ```console
-    source <(curl -X GET https://raw.githubusercontent.com/Senzing/knowledge-base/main/lists/senzing-versions-latest.sh)
-
+    docker run --rm senzing/apt list -a senzingapi
     ```
 
-1. **Option #2:** Specify Senzing version desired.
-   See [Senzing API Version History](https://senzing.com/releases/).
+
+1. :pencil2: From the list, choose the desired Senzing version, modify the following and run.
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="3.5.1"
-    export SENZING_VERSION_SENZINGAPI_BUILD="3.5.1-23104"
+    export SENZING_VERSION_SENZINGAPI="3.10.0"
+    export SENZING_VERSION_SENZINGAPI_BUILD="3.10.0-23121"
 
     ```
-
-   To find the `SENZING_VERSION_SENZINGAPI_BUILD` for a particular Senzing API version, you can use `apt` or `yum` or email [support@senzing.com](mailto:support@senzing.com).
 
 ### Build image
 
@@ -131,7 +123,6 @@ Only one method need be used.
         --build-arg SENZING_APT_INSTALL_PACKAGE="senzingapi=${SENZING_VERSION_SENZINGAPI_BUILD}" \
         --tag senzing/installer:${SENZING_VERSION_SENZINGAPI} \
         https://github.com/senzing-garage/docker-installer.git#main
-
     ```
 
 ## Run
@@ -143,7 +134,7 @@ Only one method need be used.
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="3.5.1"
+    export SENZING_VERSION_SENZINGAPI="3.10.0"
 
     ```
 
