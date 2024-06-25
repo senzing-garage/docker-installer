@@ -73,7 +73,7 @@ ENV REFRESHED_AT=2024-06-24
 
 LABEL Name="senzing/installer" \
   Maintainer="support@senzing.com" \
-  Version="1.3.5"
+  Version="1.3.6"
 
 # Finally, make the container a non-root container again.
 
