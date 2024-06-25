@@ -67,7 +67,7 @@ See [MSSQL_ACCEPT_EULA](https://github.com/senzing-garage/knowledge-base/blob/ma
 
     ```console
     export SENZING_VERSION_SENZINGAPI="3.10.0"
-    export SENZING_VERSION_SENZINGAPI_BUILD="3.10.0-23121"
+    export SENZING_VERSION_SENZINGAPI_BUILD="3.10.0-24121"
 
     ```
 
