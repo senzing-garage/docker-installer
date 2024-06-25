@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 [markdownlint](https://dlaa.me/markdownlint/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [1.3.7] - 2024-06-25
+
+### Changed in 1.3.7
+
+- Add debugging information and improve instructions
+
 ## [1.3.6] - 2024-06-24
 
 ### Changed in 1.3.6
@@ -16,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed in 1.3.5
 
-- In `Dockerfile`, updated 
+- In `Dockerfile`, updated
   - FROM instruction to `debian:11.9-slim@sha256:0e75382930ceb533e2f438071307708e79dc86d9b8e433cc6dd1a96872f2651d`
   - `senzingrepo_2.0.0-1_all.deb`
 

@@ -25,49 +25,7 @@ The Docker container is used to copy the "baked-in" Senzing files to mounted vol
 This alleviates the root container requirement seen in the
 [senzing/yum](https://github.com/senzing-garage/docker-yum) Docker container.
 
-### Contents
-
-1. [Preamble](#preamble)
-    1. [Legend](#legend)
-1. [Expectations](#expectations)
-1. [Build](#build)
-    1. [EULA](#eula)
-    1. [Environment variables](#environment-variables)
-    1. [Build image](#build-image)
-1. [Run](#run)
-    1. [Environment variables for runtime](#environment-variables-for-runtime)
-    1. [Output directory](#output-directory)
-    1. [Run image](#run-image)
-1. [References](#references)
-
-## Preamble
-
-At [Senzing](http://senzing.com),
-we strive to create GitHub documentation in a
-"[don't make me think](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/dont-make-me-think.md)" style.
-For the most part, instructions are copy and paste.
-Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
-Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
-If the instructions are not clear, please let us know by opening a new
-[Documentation issue](https://github.com/senzing-garage/template-python/issues/new?template=documentation_request.md)
-describing where we can improve.   Now on with the show...
-
-### Legend
-
-1. :thinking: - A "thinker" icon means that a little extra thinking may be required.
-   Perhaps there are some choices to be made.
-   Perhaps it's an optional step.
-1. :pencil2: - A "pencil" icon means that the instructions may need modification before performing.
-1. :warning: - A "warning" icon means that something tricky is happening, so pay attention.
-
-## Expectations
-
-- **Space:** This repository and demonstration require 6 GB free disk space.
-- **Time:** Budget 40 minutes to get the demonstration up-and-running, depending on CPU and network speeds.
-- **Background knowledge:** This repository assumes a working knowledge of:
-  - [Docker](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md)
-
-## Build
+## Build Docker container
 
 ### EULA
 
@@ -88,36 +46,30 @@ See [MSSQL_ACCEPT_EULA](https://github.com/senzing-garage/knowledge-base/blob/ma
    accept the Microsoft EULA.
    Example:
 
-   ```console
-   export MSSQL_ACCEPT_EULA=Y
-   ```
+    ```console
+    export MSSQL_ACCEPT_EULA=Y
+
+    ```
 
 ### Environment variables
 
-There are 2 options for specifying the version of Senzing to build.
-The first method uses `source` to set environment variables for the latest build.
-The second method is a manual method to specify environment variables.
-Only one method need be used.
-
-1. **Option #1:** Set environment variables for latest version of Senzing.
+1. List Senzing versions to find supported Senzing versions.
    Example:
 
     ```console
-    source <(curl -X GET https://raw.githubusercontent.com/Senzing/knowledge-base/main/lists/senzing-versions-latest.sh)
+    docker run --rm senzing/apt list -a senzingapi
 
     ```
 
-1. **Option #2:** Specify Senzing version desired.
-   See [Senzing API Version History](https://senzing.com/releases/).
+
+1. :pencil2: From the list in the prior command, choose the desired Senzing version, modify the following, and run.
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="3.5.1"
-    export SENZING_VERSION_SENZINGAPI_BUILD="3.5.1-23104"
+    export SENZING_VERSION_SENZINGAPI="3.10.3"
+    export SENZING_VERSION_SENZINGAPI_BUILD="3.10.3-24163"
 
     ```
-
-   To find the `SENZING_VERSION_SENZINGAPI_BUILD` for a particular Senzing API version, you can use `apt` or `yum` or email [support@senzing.com](mailto:support@senzing.com).
 
 ### Build image
 
@@ -143,7 +95,7 @@ Only one method need be used.
    Example:
 
     ```console
-    export SENZING_VERSION_SENZINGAPI="3.5.1"
+    export SENZING_VERSION_SENZINGAPI="3.10.3"
 
     ```
 

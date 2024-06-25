@@ -29,6 +29,7 @@ RUN apt-get update \
   && apt-get -y install \
   curl \
   gnupg \
+  tree \
   wget
 
 # Install Senzing repository index.
@@ -44,8 +45,9 @@ RUN curl \
 # Install Senzing package.
 #   Note: The system location for "data" should be /opt/senzing/data, hence the "mv" command.
 
-RUN apt-get -y install ${SENZING_APT_INSTALL_PACKAGE} \
-  && mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/
+RUN apt-get -y install ${SENZING_APT_INSTALL_PACKAGE}
+RUN tree /opt/senzing
+RUN mv /opt/senzing/data/${SENZING_DATA_VERSION}/* /opt/senzing/data/
 
 HEALTHCHECK CMD sudo yum list installed | grep ${SENZING_APT_INSTALL_PACKAGE}
 
