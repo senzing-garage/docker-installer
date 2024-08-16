@@ -35,10 +35,10 @@ RUN apt-get update \
 
 RUN curl \
       --output /senzingrepo_2.0.0-1_all.deb \
-      ${SENZING_APT_REPOSITORY_URL} \
- && apt-get -y install /senzingrepo_2.0.0-1_all.deb \
- && apt-get update \
- && rm /senzingrepo_2.0.0-1_all.deb
+      ${SENZING_APT_REPOSITORY_URL}
+RUN apt-get -y install /senzingrepo_2.0.0-1_all.deb
+RUN apt-get update
+RUN rm /senzingrepo_2.0.0-1_all.deb
 
 # Install Senzing package.
 
@@ -46,12 +46,6 @@ RUN apt-get -y install ${SENZING_APT_INSTALL_PACKAGE}
 RUN tree /opt/senzing
 
 HEALTHCHECK CMD sudo yum list installed | grep ${SENZING_APT_INSTALL_PACKAGE}
-
-# Install senzing_governor.py.
-
-RUN curl -X GET \
-      --output /opt/senzing/g2/python/senzing_governor.py \
-      https://raw.githubusercontent.com/Senzing/governor-postgresql-transaction-id/main/senzing_governor.py
 
 # Support for msodbcsql17.
 
@@ -83,6 +77,7 @@ COPY ./rootfs /
 
 COPY --from=builder /opt/senzing     /opt/local-senzing
 COPY --from=builder /opt/microsoft   /opt/local-microsoft
+COPY --from=builder /etc/opt/senzing /opt/local-senzing/etc/opt/senzing
 
 # Runtime execution:  Copy the baked in files to mounted volume(s)
 
