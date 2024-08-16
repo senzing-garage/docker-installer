@@ -77,6 +77,45 @@ These are "one-time tasks" which may already have been completed.
 
     ```
 
+## Run
+
+1. :pencil2: Identify the Senzing package and version from prior step.
+   Example:
+
+    ```console
+    export SENZING_PACKAGE=senzingapi-runtime
+    export SENZING_PACKAGE_VERSION="4.0.0-00000"
+
+    ```
+
+1. :pencil2: Specify where to install Senzing on local system.
+   Example:
+
+    ```console
+    export SENZING_OPT_SENZING_DIR=~/${SENZING_PACKAGE}-${SENZING_PACKAGE_VERSION}
+
+    ```
+
+1. Make the output directory.
+   This ensures the correct ownership and permissions on the directory.
+   Example:
+
+    ```console
+    mkdir -p ${SENZING_OPT_SENZING_DIR}
+
+    ```
+
+1. Run the [docker run] command.
+   Example:
+
+    ```console
+    docker run \
+        --rm \
+        --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
+        senzing/installer-${SENZING_PACKAGE}:${SENZING_PACKAGE_VERSION}
+
+    ```
+
 ## References
 
 [clone-repository]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/clone-repository.md

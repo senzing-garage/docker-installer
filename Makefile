@@ -49,11 +49,11 @@ docker-build:
 
 .PHONY: docker-build-from-staging
 docker-build-from-staging:
-	docker build \
+	DOCKER_BUILDKIT=0  docker build \
 		--build-arg ACCEPT_EULA=$(MSSQL_ACCEPT_EULA) \
 		--build-arg SENZING_ACCEPT_EULA=$(SENZING_ACCEPT_EULA) \
 		--build-arg SENZING_APT_INSTALL_PACKAGE=$(SENZING_APT_INSTALL_PACKAGE) \
-		--build-arg SENZING_APT_REPOSITORY=$(SENZING_APT_REPOSITORY_STAGING) \
+		--build-arg SENZING_APT_REPOSITORY_URL=$(SENZING_APT_REPOSITORY_STAGING) \
 		--no-cache \
 		--tag $(DOCKER_IMAGE_NAME)-staging:$(SENZING_PACKAGE_VERSION) \
 		.
