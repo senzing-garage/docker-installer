@@ -132,7 +132,7 @@ Running the Docker container will populate the local host with files from the Se
    Example:
 
     ```console
-    export SENZING_OPT_SENZING_DIR=~/${SENZING_PACKAGE}-${SENZING_PACKAGE_VERSION}
+    export SENZING_OPT_SENZING_DIR=/opt/${SENZING_PACKAGE}-${SENZING_PACKAGE_VERSION}
 
     ```
 
@@ -151,6 +151,7 @@ Running the Docker container will populate the local host with files from the Se
     ```console
     docker run \
         --rm \
+        --user 0 \
         --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
         senzing/installer-${SENZING_PACKAGE}:${SENZING_PACKAGE_VERSION}
 
@@ -162,6 +163,7 @@ Running the Docker container will populate the local host with files from the Se
     ```console
     docker run \
         --rm \
+        --user 0 \
         --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
         senzing/installer-${SENZING_PACKAGE}-staging:${SENZING_PACKAGE_VERSION}
 
