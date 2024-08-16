@@ -174,6 +174,16 @@ Running the Docker container will populate the local host with files from the Se
     tree ${SENZING_OPT_SENZING_DIR}
     ```
 
+1. Copy versioned files into `/opt/senzing` directory.
+   Example:
+
+    ```console
+    sudo rm -rf /opt/senzing
+    sudo mkdir  /opt/senzing
+    sudo cp -R  /opt/${SENZING_PACKAGE}-${SENZING_PACKAGE_VERSION}/* /opt/senzing
+    diff -r     /opt/${SENZING_PACKAGE}-${SENZING_PACKAGE_VERSION}   /opt/senzing
+    ```
+
 ## References
 
 [clone-repository]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/clone-repository.md
