@@ -21,7 +21,7 @@ This alleviates the root container requirement seen in the [senzing/yum] Docker 
 
 ## Build Docker container
 
-### EULA
+### EULAs
 
 To use the Senzing code, you must agree to the End User License Agreement (EULA).
 
@@ -47,11 +47,24 @@ See [MSSQL_ACCEPT_EULA].
 
 ### Environment variables
 
-1. List Senzing versions to find supported Senzing versions.
+1. :pencil2: Identify the desired Senzing package.
+   Options:
+    - senzingapi-poc
+    - senzingapi-runtime
+    - senzingapi-setup
+    - senzingapi-tools
    Example:
 
     ```console
-    docker run --rm senzing/apt list -a senzingapi-runtime
+    export SENZING_PACKAGE=senzingapi-runtime
+
+    ```
+
+1. View the available versions of the Senzing package.
+   Example:
+
+    ```console
+    docker run --rm senzing/apt list -a ${SENZING_PACKAGE}
 
     ```
 
@@ -59,7 +72,6 @@ See [MSSQL_ACCEPT_EULA].
    Example:
 
     ```console
-    export SENZING_PACKAGE=senzingapi-runtime
     export SENZING_PACKAGE_VERSION="4.0.0-00000"
 
     ```
