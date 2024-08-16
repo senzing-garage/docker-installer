@@ -8,7 +8,7 @@ GIT_VERSION := $(shell git describe --always --tags --long --dirty | sed -e 's/\
 MSSQL_ACCEPT_EULA ?= Y
 SENZING_ACCEPT_EULA ?= I_ACCEPT_THE_SENZING_EULA
 SENZING_APT_REPOSITORY_PRODUCTION ?= "https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.0-1_amd64.deb"
-SENZING_APT_REPOSITORY_STAGING ?= "https://senzing-staging-apt.s3.amazonaws.com/senzingstagingrepo_1.0.0-1_amd64.deb"
+SENZING_APT_REPOSITORY_STAGING ?= "https://senzing-staging-apt.s3.amazonaws.com/senzingstagingrepo_2.0.0-1_all.deb"
 SENZING_PACKAGE ?= senzingapi-runtime
 SENZING_PACKAGE_VERSION ?= "latest"
 DOCKER_IMAGE_NAME ?= senzing/installer-$(SENZING_PACKAGE)
@@ -65,7 +65,8 @@ docker-build-from-staging:
 .PHONY: docker-rmi-for-build
 docker-rmi-for-build:
 	-docker rmi --force \
-		$(DOCKER_IMAGE_NAME)
+		$(DOCKER_IMAGE_NAME) \
+		$(DOCKER_IMAGE_NAME)-staging:$(SENZING_PACKAGE_VERSION)
 
 
 .PHONY: clean

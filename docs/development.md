@@ -58,6 +58,25 @@ These are "one-time tasks" which may already have been completed.
 
     ```
 
+    Inspect container.
+    Example:
+
+    ```console
+    docker run -it --user 0 --rm senzing/installer-senzingapi-runtime-staging:latest /bin/bash
+
+    ```
+
+### Build specific version
+
+1. **Staging:** Build Docker image from latest Senzing staging version.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make docker-build-from-staging
+
+    ```
+
 ## References
 
 [clone-repository]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/clone-repository.md
