@@ -165,6 +165,13 @@ These are "one-time tasks" which may already have been completed.
 
     ```
 
+1. The `${SENZING_OPT_SENZING_DIR}` directory will contain the extracted Senzing package.
+   Example:
+
+    ```console
+    tree ${SENZING_OPT_SENZING_DIR}
+    ```
+
 ## References
 
 [clone-repository]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/clone-repository.md
