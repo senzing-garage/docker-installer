@@ -1,9 +1,15 @@
-# Git variables
+# Makefile for docker-installer
+
+# -----------------------------------------------------------------------------
+# Variables
+# -----------------------------------------------------------------------------
 
 GIT_REPOSITORY_NAME := $(shell basename `git rev-parse --show-toplevel`)
 GIT_VERSION := $(shell git describe --always --tags --long --dirty | sed -e 's/\-0//' -e 's/\-g.......//')
 
-# Docker variables
+# Conditional assignment. ('?=')
+# Can be overridden with "export"
+# Example: "export LD_LIBRARY_PATH=/path/to/my/senzing/g2/lib"
 
 MSSQL_ACCEPT_EULA ?= Y
 SENZING_ACCEPT_EULA ?= I_ACCEPT_THE_SENZING_EULA
@@ -29,12 +35,6 @@ default: help
 # Docker-based builds
 # -----------------------------------------------------------------------------
 
-.PHONY: bob
-bob:
-	@echo $(DOCKER_IMAGE_NAME)
-	@echo $(SENZING_APT_INSTALL_PACKAGE)
-	@echo $(SENZING_PACKAGE_VERSION)
-
 
 .PHONY: docker-build
 docker-build:
@@ -59,7 +59,14 @@ docker-build-from-staging:
 		.
 
 # -----------------------------------------------------------------------------
-# Clean up targets
+# Clean
+# -----------------------------------------------------------------------------
+
+.PHONY: clean
+clean: docker-rmi-for-build
+
+# -----------------------------------------------------------------------------
+# Utility targets
 # -----------------------------------------------------------------------------
 
 .PHONY: docker-rmi-for-build
@@ -69,17 +76,10 @@ docker-rmi-for-build:
 		$(DOCKER_IMAGE_NAME)-staging:$(SENZING_PACKAGE_VERSION)
 
 
-.PHONY: clean
-clean: docker-rmi-for-build
-
-# -----------------------------------------------------------------------------
-# Utility targets
-# -----------------------------------------------------------------------------
-
 .PHONY: help
 help:
-	@echo "List of make targets:"
-	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
+	$(info Makefile targets:)
+	@$(MAKE) -pRrq -f $(firstword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
 
 
 .PHONY: print-make-variables

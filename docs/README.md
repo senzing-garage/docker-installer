@@ -1,5 +1,8 @@
-# template-docker
+# docker-installer
 
-Placeholder for [GitHub pages](https://pages.github.com/).
+Placeholder for [GitHub pages].
 
-See [https://senzing.github.io/docker-installer](https://senzing.github.io/docker-installer).
+See [GitHub page].
+
+[GitHub page]: https://garage.senzing.com/docker-installer
+[GitHub pages]: https://pages.github.com/

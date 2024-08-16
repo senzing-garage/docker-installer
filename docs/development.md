@@ -117,6 +117,8 @@ These are "one-time tasks" which may already have been completed.
 
 ## Run
 
+Running the Docker container will populate the local host with files from the Senzing package.
+
 1. :pencil2: Identify the Senzing package and version from prior step.
    Example:
 
