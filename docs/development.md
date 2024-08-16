@@ -115,17 +115,6 @@ These are "one-time tasks" which may already have been completed.
 
     ```
 
-### Build specific version
-
-1. **Staging:** Build Docker image from latest Senzing staging version.
-   Example:
-
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    make docker-build-from-staging
-
-    ```
-
 ## Run
 
 1. :pencil2: Identify the Senzing package and version from prior step.
@@ -154,7 +143,7 @@ These are "one-time tasks" which may already have been completed.
 
     ```
 
-1. Run the [docker run] command.
+1. **Production:** Run the [docker run] command.
    Example:
 
     ```console
@@ -162,6 +151,17 @@ These are "one-time tasks" which may already have been completed.
         --rm \
         --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
         senzing/installer-${SENZING_PACKAGE}:${SENZING_PACKAGE_VERSION}
+
+    ```
+
+1. **Staging:** Run the [docker run] command.
+   Example:
+
+    ```console
+    docker run \
+        --rm \
+        --volume ${SENZING_OPT_SENZING_DIR}:/opt/senzing \
+        senzing/installer-${SENZING_PACKAGE}-staging:${SENZING_PACKAGE_VERSION}
 
     ```
 
