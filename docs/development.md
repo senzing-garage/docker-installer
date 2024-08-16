@@ -30,7 +30,7 @@ These are "one-time tasks" which may already have been completed.
 
 ## Build
 
-### Build latest
+### Build latest senzingapi-runtime
 
 1. **Production:** Build Docker image from latest Senzing production version.
    Example:
@@ -63,6 +63,55 @@ These are "one-time tasks" which may already have been completed.
 
     ```console
     docker run -it --user 0 --rm senzing/installer-senzingapi-runtime-staging:latest /bin/bash
+
+    ```
+
+### Build versioned package from staging
+
+1. :pencil2: Identify the desired Senzing package.
+   Options:
+    - senzingapi-poc
+    - senzingapi-runtime
+    - senzingapi-setup
+    - senzingapi-tools
+
+   Example:
+
+    ```console
+    export SENZING_PACKAGE=senzingapi-runtime
+
+    ```
+
+1. View the available versions of the Senzing package.
+   Example:
+
+    ```console
+    docker run --rm senzing/apt list -a ${SENZING_PACKAGE}
+
+    ```
+
+1. :pencil2: From the list in the prior command, choose the desired Senzing version, modify the following, and run.
+   Example:
+
+    ```console
+    export SENZING_PACKAGE_VERSION="4.0.0-00000"
+
+    ```
+
+1. Build Docker image from latest Senzing production version.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make docker-build-from-staging
+
+    ```
+
+    Inspect container.
+    Example:
+
+    ```console
+    docker run -it --user 0 --rm senzing/installer-${SENZING_PACKAGE}-staging:${SENZING_PACKAGE_VERSION} /bin/bash
 
     ```
 
@@ -119,6 +168,7 @@ These are "one-time tasks" which may already have been completed.
 ## References
 
 [clone-repository]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/clone-repository.md
+[docker run]: https://docs.docker.com/engine/reference/commandline/run/
 [docker]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md
 [git]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/git.md
 [make]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/make.md
