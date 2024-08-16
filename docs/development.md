@@ -86,7 +86,7 @@ These are "one-time tasks" which may already have been completed.
    Example:
 
     ```console
-    docker run --rm senzing/apt list -a ${SENZING_PACKAGE}
+    docker run --rm senzing/apt-staging list -a ${SENZING_PACKAGE}
 
     ```
 
