@@ -35,10 +35,10 @@ RUN apt-get update \
 
 RUN curl \
       --output /senzingrepo_2.0.0-1_all.deb \
-      ${SENZING_APT_REPOSITORY_URL}
-RUN apt-get -y install /senzingrepo_2.0.0-1_all.deb
-RUN apt-get update
-RUN rm /senzingrepo_2.0.0-1_all.deb
+      ${SENZING_APT_REPOSITORY_URL} \
+ && apt-get -y install /senzingrepo_2.0.0-1_all.deb \
+ && apt-get update \
+ && rm /senzingrepo_2.0.0-1_all.deb
 
 # Install Senzing package.
 
