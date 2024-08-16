@@ -96,27 +96,11 @@ See [MSSQL_ACCEPT_EULA].
 
 ### Environment variables for runtime
 
-1. :pencil2: Identify the Senzing package.
+1. :pencil2: Identify the Senzing package and version from prior step.
    Example:
 
     ```console
     export SENZING_PACKAGE=senzingapi-runtime
-
-    ```
-
-1. View the available versions of the Senzing package.
-   Example:
-
-    ```console
-    docker run --rm senzing/apt list -a ${SENZING_PACKAGE}
-
-    ```
-
-1. :pencil2: Specify Senzing version desired.
-   See [Senzing API Version History].
-   Example:
-
-    ```console
     export SENZING_PACKAGE_VERSION="4.0.0-00000"
 
     ```
@@ -238,7 +222,6 @@ Configuration values specified by environment variable or command line parameter
 [Errors]: docs/errors.md
 [Examples]: docs/examples.md
 [MSSQL_ACCEPT_EULA]: https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#mssql_accept_eula
-[Senzing API Version History]: https://senzing.com/releases/
 [Senzing Garage]: https://github.com/senzing-garage
 [Senzing Quick Start guides]: https://docs.senzing.com/quickstart/
 [SENZING_ACCEPT_EULA]: https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#senzing_accept_eula
