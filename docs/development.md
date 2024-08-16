@@ -107,8 +107,8 @@ These are "one-time tasks" which may already have been completed.
 
     ```
 
-    Inspect container.
-    Example:
+1. Inspect container.
+   Example:
 
     ```console
     docker run -it --user 0 --rm senzing/installer-${SENZING_PACKAGE}-staging:${SENZING_PACKAGE_VERSION} /bin/bash
