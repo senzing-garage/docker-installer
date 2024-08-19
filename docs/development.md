@@ -141,7 +141,7 @@ Running the Docker container will populate the local host with files from the Se
    Example:
 
     ```console
-    mkdir -p ${SENZING_OPT_SENZING_DIR}
+    sudo mkdir -p ${SENZING_OPT_SENZING_DIR}
 
     ```
 
