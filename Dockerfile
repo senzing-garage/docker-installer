@@ -27,22 +27,24 @@ ENV TERM=xterm
 # Install packages via apt-get.
 
 RUN apt-get update \
- && apt-get -y install \
-      curl \
-      gnupg \
-      tree \
-      wget
+  && apt-get -y install \
+  curl \
+  gnupg \
+  tree \
+  wget
 
 # Install Senzing repository index.
 
 RUN curl \
-      --output /senzingrepo_2.0.0-1_all.deb \
-      ${SENZING_APT_REPOSITORY_URL} \
- && apt-get -y install /senzingrepo_2.0.0-1_all.deb \
- && apt-get update \
- && rm /senzingrepo_2.0.0-1_all.deb
+  --output /senzingrepo_2.0.0-1_all.deb \
+  ${SENZING_APT_REPOSITORY_URL} \
+  && apt-get -y install /senzingrepo_2.0.0-1_all.deb \
+  && apt-get update \
+  && rm /senzingrepo_2.0.0-1_all.deb
 
 # Install Senzing package.
+
+RUN env
 
 RUN apt-get -y install ${SENZING_APT_INSTALL_PACKAGE}
 RUN tree /opt/senzing
@@ -52,10 +54,10 @@ HEALTHCHECK CMD sudo yum list installed | grep ${SENZING_APT_INSTALL_PACKAGE}
 # Support for msodbcsql17.
 
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
- && curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list \
- && apt-get update \
- && apt-get -y install msodbcsql17 || true \
- && mkdir -p /opt/microsoft
+  && curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+  && apt-get update \
+  && apt-get -y install msodbcsql17 || true \
+  && mkdir -p /opt/microsoft
 
 # -----------------------------------------------------------------------------
 # Stage: Final
@@ -64,8 +66,8 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 FROM ${BASE_IMAGE} AS final
 ENV REFRESHED_AT=2024-08-16
 LABEL Name="senzing/installer" \
-      Maintainer="support@senzing.com" \
-      Version="2.0.0"
+  Maintainer="support@senzing.com" \
+  Version="2.0.0"
 
 # Run as non-root container
 
