@@ -44,8 +44,6 @@ RUN curl \
 
 # Install Senzing package.
 
-RUN env
-
 RUN apt-get -y install ${SENZING_APT_INSTALL_PACKAGE}
 RUN tree /opt/senzing
 
