@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=debian:12.slim
+ARG BASE_IMAGE=debian:12-slim
 FROM ${BASE_IMAGE} AS builder
 
 ENV REFRESHED_AT=2025-09-02
