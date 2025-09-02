@@ -49,15 +49,15 @@ See [MSSQL_ACCEPT_EULA].
 
 1. :pencil2: Identify the desired Senzing package.
    Options:
-    - senzingapi-poc
-    - senzingapi-runtime
-    - senzingapi-setup
-    - senzingapi-tools
+    - senzingsdk-poc
+    - senzingsdk-runtime
+    - senzingsdk-setup
+    - senzingsdk-tools
 
    Example:
 
     ```console
-    export SENZING_PACKAGE=senzingapi-runtime
+    export SENZING_PACKAGE=senzingsdk-runtime
 
     ```
 
@@ -100,7 +100,7 @@ See [MSSQL_ACCEPT_EULA].
    Example:
 
     ```console
-    export SENZING_PACKAGE=senzingapi-runtime
+    export SENZING_PACKAGE=senzingsdk-runtime
     export SENZING_PACKAGE_VERSION="4.0.0-00000"
 
     ```

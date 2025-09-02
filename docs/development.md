@@ -30,7 +30,7 @@ These are "one-time tasks" which may already have been completed.
 
 ## Build
 
-### Build latest senzingapi-runtime
+### Build latest senzingsdk-runtime
 
 1. **Production:** Build Docker image from latest Senzing production version.
    Example:
@@ -45,7 +45,7 @@ These are "one-time tasks" which may already have been completed.
     Example:
 
     ```console
-    docker run -it --user 0 --rm senzing/installer-senzingapi-runtime:latest /bin/bash
+    docker run -it --user 0 --rm senzing/installer-senzingsdk-runtime:latest /bin/bash
 
     ```
 
@@ -62,7 +62,7 @@ These are "one-time tasks" which may already have been completed.
     Example:
 
     ```console
-    docker run -it --user 0 --rm senzing/installer-senzingapi-runtime-staging:latest /bin/bash
+    docker run -it --user 0 --rm senzing/installer-senzingsdk-runtime-staging:latest /bin/bash
 
     ```
 
@@ -70,15 +70,15 @@ These are "one-time tasks" which may already have been completed.
 
 1. :pencil2: Identify the desired Senzing package.
    Options:
-    - senzingapi-poc
-    - senzingapi-runtime
-    - senzingapi-setup
-    - senzingapi-tools
+    - senzingsdk-poc
+    - senzingsdk-runtime
+    - senzingsdk-setup
+    - senzingsdk-tools
 
    Example:
 
     ```console
-    export SENZING_PACKAGE=senzingapi-runtime
+    export SENZING_PACKAGE=senzingsdk-runtime
 
     ```
 
@@ -123,7 +123,7 @@ Running the Docker container will populate the local host with files from the Se
    Example:
 
     ```console
-    export SENZING_PACKAGE=senzingapi-runtime
+    export SENZING_PACKAGE=senzingsdk-runtime
     export SENZING_PACKAGE_VERSION="4.0.0-00000"
 
     ```
