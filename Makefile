@@ -15,7 +15,7 @@ MSSQL_ACCEPT_EULA ?= Y
 SENZING_ACCEPT_EULA ?= I_ACCEPT_THE_SENZING_EULA
 SENZING_APT_REPOSITORY_PRODUCTION ?= "https://senzing-production-apt.s3.amazonaws.com/senzingrepo_1.0.0-1_amd64.deb"
 SENZING_APT_REPOSITORY_STAGING ?= "https://senzing-staging-apt.s3.amazonaws.com/senzingstagingrepo_2.0.0-1_all.deb"
-SENZING_PACKAGE ?= senzingapi-runtime
+SENZING_PACKAGE ?= senzingsdk-runtime
 SENZING_PACKAGE_VERSION ?= latest
 DOCKER_IMAGE_NAME ?= senzing/installer-$(SENZING_PACKAGE)
 SENZING_APT_INSTALL_PACKAGE ?= $(SENZING_PACKAGE)
@@ -34,7 +34,6 @@ default: help
 # -----------------------------------------------------------------------------
 # Docker-based builds
 # -----------------------------------------------------------------------------
-
 
 .PHONY: docker-build
 docker-build:

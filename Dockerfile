@@ -1,15 +1,13 @@
-# ARG BASE_IMAGE=debian:11.11-slim
-ARG BASE_IMAGE=debian:12.7-slim
-
+ARG BASE_IMAGE=debian:12-slim
 FROM ${BASE_IMAGE} AS builder
 
-ENV REFRESHED_AT=2024-08-16
+ENV REFRESHED_AT=2025-09-02
 
 # ACCEPT_EULA and SENZING_ACCEPT_EULA to be replaced by --build-arg
 
 ARG ACCEPT_EULA=no
 ARG SENZING_ACCEPT_EULA=no
-ARG SENZING_APT_INSTALL_PACKAGE="senzingapi-runtime"
+ARG SENZING_APT_INSTALL_PACKAGE="senzingsdk-runtime"
 ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_2.0.0-1_all.deb"
 
 # -----------------------------------------------------------------------------
@@ -27,20 +25,20 @@ ENV TERM=xterm
 # Install packages via apt-get.
 
 RUN apt-get update \
-  && apt-get -y install \
-  curl \
-  gnupg \
-  tree \
-  wget
+ && apt-get -y install \
+      curl \
+      gnupg \
+      tree \
+      wget
 
 # Install Senzing repository index.
 
 RUN curl \
-  --output /senzingrepo_2.0.0-1_all.deb \
-  ${SENZING_APT_REPOSITORY_URL} \
-  && apt-get -y install /senzingrepo_2.0.0-1_all.deb \
-  && apt-get update \
-  && rm /senzingrepo_2.0.0-1_all.deb
+      --output /senzingrepo_2.0.0-1_all.deb \
+      ${SENZING_APT_REPOSITORY_URL} \
+ && apt-get -y install /senzingrepo_2.0.0-1_all.deb \
+ && apt-get update \
+ && rm /senzingrepo_2.0.0-1_all.deb
 
 # Install Senzing package.
 
@@ -52,20 +50,20 @@ HEALTHCHECK CMD sudo yum list installed | grep ${SENZING_APT_INSTALL_PACKAGE}
 # Support for msodbcsql17.
 
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-  && curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list \
-  && apt-get update \
-  && apt-get -y install msodbcsql17 || true \
-  && mkdir -p /opt/microsoft
+ && curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+ && apt-get update \
+ && apt-get -y install msodbcsql17 || true \
+ && mkdir -p /opt/microsoft
 
 # -----------------------------------------------------------------------------
 # Stage: Final
 # -----------------------------------------------------------------------------
 
 FROM ${BASE_IMAGE} AS final
-ENV REFRESHED_AT=2024-08-16
+ENV REFRESHED_AT=2025-09-02
 LABEL Name="senzing/installer" \
   Maintainer="support@senzing.com" \
-  Version="2.0.0"
+  Version="2.0.1"
 
 # Run as non-root container
 
