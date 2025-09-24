@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=debian:12-slim@sha256:df52e55e3361a81ac1bead266f3373ee55d29aa50cf0975d440c2be3483d8ed3
+ARG BASE_IMAGE=debian:13-slim@sha256:c2880112cc5c61e1200c26f106e4123627b49726375eb5846313da9cca117337
 FROM ${BASE_IMAGE} AS builder
 
 ENV REFRESHED_AT=2025-09-02
@@ -8,7 +8,7 @@ ENV REFRESHED_AT=2025-09-02
 ARG ACCEPT_EULA=no
 ARG SENZING_ACCEPT_EULA=no
 ARG SENZING_APT_INSTALL_PACKAGE="senzingsdk-runtime"
-ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_2.0.0-1_all.deb"
+ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_2.0.1-1_all.deb"
 
 # -----------------------------------------------------------------------------
 # Stage: builder
