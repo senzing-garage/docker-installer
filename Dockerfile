@@ -8,7 +8,7 @@ ENV REFRESHED_AT=2025-09-02
 ARG ACCEPT_EULA=no
 ARG SENZING_ACCEPT_EULA=no
 ARG SENZING_APT_INSTALL_PACKAGE="senzingsdk-runtime"
-ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_2.0.0-1_all.deb"
+ARG SENZING_APT_REPOSITORY_URL="https://senzing-production-apt.s3.amazonaws.com/senzingrepo_2.0.1-1_all.deb"
 
 # -----------------------------------------------------------------------------
 # Stage: builder
