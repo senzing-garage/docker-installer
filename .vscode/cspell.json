@@ -2,22 +2,24 @@
   "version": "0.2",
   "language": "en",
   "words": [
-    "CCLA",
-    "CODEOWNER",
-    "ICLA",
-    "RUNAS",
-    "Senzing",
     "alnum",
     "andrewslotin",
     "buildx",
+    "CCLA",
+    "CODEOWNER",
+    "cooldown",
+    "dockerfiles",
     "dockerhub",
     "esbenp",
     "golangci",
     "gotestfmt",
     "gotesttools",
+    "ICLA",
     "msodbcsql",
     "pydevproject",
     "rootfs",
+    "RUNAS",
+    "Senzing",
     "senzingdata",
     "senzingrepo",
     "senzingsdk",
@@ -25,7 +27,5 @@
     "testcoverage",
     "toplevel"
   ],
-  "ignorePaths": [
-    ".git/**"
-  ]
+  "ignorePaths": [".git/**"]
 }
