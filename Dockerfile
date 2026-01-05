@@ -1,7 +1,7 @@
 ARG BASE_IMAGE=debian:13-slim@sha256:4bcb9db66237237d03b55b969271728dd3d955eaaa254b9db8a3db94550b1885
 FROM ${BASE_IMAGE} AS builder
 
-ENV REFRESHED_AT=2025-09-02
+ENV REFRESHED_AT=2026-01-05
 
 # ACCEPT_EULA and SENZING_ACCEPT_EULA to be replaced by --build-arg
 
@@ -59,7 +59,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 # -----------------------------------------------------------------------------
 
 FROM ${BASE_IMAGE} AS final
-ENV REFRESHED_AT=2025-09-02
+ENV REFRESHED_AT=2026-01-05
 LABEL Name="senzing/installer" \
   Maintainer="support@senzing.com" \
   Version="2.0.1"
