@@ -15,6 +15,7 @@
     "gotestfmt",
     "gotesttools",
     "ICLA",
+    "kernelsam",
     "msodbcsql",
     "pydevproject",
     "rootfs",
@@ -27,5 +28,7 @@
     "testcoverage",
     "toplevel"
   ],
-  "ignorePaths": [".git/**"]
+  "ignorePaths": [
+    ".git/**"
+  ]
 }
