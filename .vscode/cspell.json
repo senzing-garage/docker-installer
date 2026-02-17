@@ -28,7 +28,5 @@
     "testcoverage",
     "toplevel"
   ],
-  "ignorePaths": [
-    ".git/**"
-  ]
+  "ignorePaths": [".git/**"]
 }
