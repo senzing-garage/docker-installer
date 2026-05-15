@@ -44,81 +44,6 @@ _Note:_ The Docker image is **not** pushed to [DockerHub].
 - [Docker Build Container GitHub Action]
   - Uses: [senzing-factory/github-action-docker-buildx-build]
 
-## docker-push-containers-to-dockerhub.yaml
-
-After a [Semantic Version] release is created,
-this action builds Docker images on multiple architectures and pushes the Docker images to [DockerHub].
-
-- [Docker Push Containers to DockerHub GitHub Action]
-  - Uses: [senzing-factory/github-action-docker-buildx-build]
-
-## golangci-lint.yaml
-
-When a change is committed to GitHub or a Pull Request is made against the `main` branch,
-this action runs [golangci-lint] to run multiple linters against the code.
-
-- [Golangci Lint GitHub Action]
-  - Configuration:
-    - [.golangci.yaml]
-  - Uses:
-    - [actions/checkout]
-    - [senzing-factory/github-action-install-senzing-sdk]
-    - [actions/setup-go]
-    - [golangci/golangci-lint-action]
-
-## go-proxy-pull.yaml
-
-After a [Semantic Version] release is created,
-this action expedites the Go publishing process.
-
-- [Go Proxy Pull GitHub Action]
-  - Uses: [andrewslotin/go-proxy-pull-action]
-
-## go-test-darwin.yaml
-
-When a Pull Request is made against the `main` branch,
-this action runs `go test` with coverage testing on macOS.
-
-- [Go Test Darwin GitHub Action]
-  - Configuration: [testcoverage.yaml]
-  - Uses:
-    - [actions/checkout]
-    - [actions/setup-go]
-    - [gotesttools/gotestfmt-action]
-    - [senzing-factory/github-action-install-senzing-sdk]
-    - [actions/upload-artifact]
-    - [senzing-factory/build-resources/.../go-coverage.yaml]
-
-## go-test-linux.yaml
-
-When a change is committed to GitHub or a Pull Request is made against the `main` branch,
-this action runs `go test` with coverage testing on Linux.
-
-- [Go Test Linux GitHub Action]
-  - Configuration: [testcoverage.yaml]
-  - Uses:
-    - [actions/checkout]
-    - [actions/setup-go]
-    - [gotesttools/gotestfmt-action]
-    - [senzing-factory/github-action-install-senzing-sdk]
-    - [actions/upload-artifact]
-    - [senzing-factory/build-resources/.../go-coverage.yaml]
-
-## go-test-windows.yaml
-
-When a Pull Request is made against the `main` branch,
-this action runs `go test` with coverage testing on Windows.
-
-- [Go Test Windows GitHub Action]
-  - Configuration: [testcoverage.yaml]
-  - Uses:
-    - [actions/checkout]
-    - [actions/setup-go]
-    - [gotesttools/gotestfmt-action]
-    - [senzing-factory/github-action-install-senzing-sdk]
-    - [actions/upload-artifact]
-    - [senzing-factory/build-resources/.../go-coverage.yaml]
-
 ## lint-workflows.yaml
 
 When a change is committed to GitHub or a Pull Request is made against the `main` branch,
@@ -130,26 +55,6 @@ this action runs [super-linter] to run multiple linters against the code.
     - [.jscpd.json]
     - [.yaml-lint.yml]
   - Uses: [senzing-factory/build-resources/.../lint-workflows.yaml]
-
-## make-go-github-file.yaml
-
-After a [Semantic Version] release is created,
-this action creates a Pull Request for an updated [github.go] file
-for the **next** Semantic Version release by increasing the Semantic Version's Patch value.
-
-- [Make Go GitHub File GitHub Action]
-  - Uses: [senzing-factory/build-resources/.../make-go-github-file.yaml]
-
-## make-go-tag.yaml
-
-After a [Semantic Version] release is created,
-this action creates a tag in the form `vM.m.P` using the SHA of the `M.m.P` release.
-The `v` prefix is standard usage in [Go].
-
-- [Make Go Tag GitHub Action]
-  - Uses:
-    - [actions/checkout]
-    - [senzing-factory/github-action-make-go-tag]
 
 ## move-pr-to-done-dependabot.yaml
 
@@ -199,7 +104,6 @@ this action moves the PR on the "Garage" project board to "Done".
 [senzing-factory/build-resources/.../make-go-github-file.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/make-go-github-file.yaml
 [senzing-factory/build-resources/.../move-pr-to-done-dependabot.yaml]: https://github.com/senzing-factory/build-resources/blob/main/.github/workflows/move-pr-to-done-dependabot.yaml
 [senzing-factory/github-action-docker-buildx-build]: https://github.com/senzing-factory/github-action-docker-buildx-build
-[senzing-factory/github-action-install-senzing-sdk]: https://github.com/senzing-factory/github-action-install-senzing-sdk
 [senzing-factory/github-action-make-go-tag]: https://github.com/senzing-factory/github-action-make-go-tag
 [super-linter]: https://github.com/super-linter/super-linter
 [testcoverage.yaml]: ../coverage/README.md#testcoverageyaml
